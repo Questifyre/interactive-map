@@ -1,16 +1,30 @@
-```markdown
 # Questifyre's Interactive Map  
-**Unleash Your World, Breath by Pixel**  
+**Unleash Your World, Breath by Pixel**
 
-Step into the heart of your tabletop realm with the **Questifyre Interactive Map** - a dynamic canvas where lore, atmosphere, and strategy collide. Crafted for Game Masters and players who crave immersion, this tool transforms static maps into living worlds.
-
-![Banner](https://i.ibb.co/GvYCxkHX/Questifyre-Banner.png)  
+![Questifyre Banner](https://github.com/user-attachments/assets/924c88f0-e292-4ade-a171-da951e6bf22a)
 
 **🌍 Live Sample Preview:** [questifyre.github.io/interactive-map](https://questifyre.github.io/interactive-map/)
 
 ---
 
-## 🌟 Features  
+## 🚩 Table of Contents  
+- [Overview](#overview)  
+- [Features](#features)  
+- [Quick Start](#quick-start)  
+- [Configuration Guide](#configuration-guide)  
+  - [Setup & Installation](#setup--installation)  
+  - [Editing `config.json`](#editing-configjson)  
+- [Hosting Your Map](#hosting-your-map)  
+- [Support & Future Plans](#support--future-plans)  
+
+---
+
+## Overview  
+Step into the heart of your tabletop realm with the **Questifyre Interactive Map** - a dynamic canvas where lore, atmosphere, and strategy collide. Crafted for Game Masters and players who crave immersion, this tool transforms static maps into living worlds.
+
+---
+
+## Features  
 - **⚙️ Extensive Customization**: Tailor map features, controls, and visuals to suit your campaign.  
 - **🗺️ Fluid Map Control**: Pan, zoom, and scale seamlessly for exploration or strategy.  
 - **⏱️ Atmospheric Customization**: Shift time of day and weather (rain, storms, overcast) to match your narrative.  
@@ -21,9 +35,19 @@ Step into the heart of your tabletop realm with the **Questifyre Interactive Map
 
 ---
 
-## 🛠️ Configuration Guide  
+## Quick Start
+1. Download the project.  
+2. Replace the sample files in `assets/user` with your own.  
+3. Tweak `config.json` to match your assets and preferences.  
+4. Host locally or deploy via GitHub Pages!  
 
-### 📥 Setup & Installation  
+**Need help?** Check the included `config_sample.json` and `assets/user` examples!  
+
+--- 
+
+## Configuration Guide  
+
+### Setup & Installation  
 1. **Download the Project**:  
    - Clone this repository or download the ZIP file.  
 2. **Prepare Assets**:  
@@ -39,10 +63,10 @@ Step into the heart of your tabletop realm with the **Questifyre Interactive Map
 
 ---
 
-### ⚙️ Editing `config.json`  
+### Editing `config.json`  
 Customize the map’s behavior by modifying the `config.json` file.  
 
-#### 🔧 Basic Settings  
+#### Basic Settings  
 ```json  
 "Settings": {  
     "Enable Grid Toggle": true,  
@@ -57,7 +81,7 @@ Customize the map’s behavior by modifying the `config.json` file.
 }  
 ```  
 
-#### 🗺️ Map & Overlay Paths  
+#### Map & Overlay Paths  
 ```json  
 "Maps": {  
     "Grid": "map_grid.jpg",  
@@ -70,7 +94,7 @@ Customize the map’s behavior by modifying the `config.json` file.
 ```  
 - **Example**: If your map is `assets/user/maps/fantasy_map.jpg`, set `"Grid": "fantasy_map.jpg"`.  
 
-#### 🎮 Interactive Elements  
+#### Interactive Elements  
 - **Map Tooltips**: Add lore hints triggered by mouse hover.  
 - **Region Music**: Assign music to specific map areas.  
 ```json  
@@ -89,12 +113,12 @@ Customize the map’s behavior by modifying the `config.json` file.
 ]  
 ```  
 
-#### 🖱️ Coordinate Tracking  
+#### Coordinate Tracking  
 Enable `"TEST-TrackMousePosition": true` to log mouse coordinates in the browser console. Use this to fine-tune tooltip and music regions!  
 
 ---
 
-### 🌍 Hosting Your Map  
+### Hosting Your Map  
 1. **Local Testing**:  
    - Open `index.html` in a browser. Use a local server (e.g., Local Host, VS Code’s Live Server) to avoid CORS issues.  
 2. **Host Online**:  
@@ -103,20 +127,7 @@ Enable `"TEST-TrackMousePosition": true` to log mouse coordinates in the browser
 
 ---
 
-## ❤️ Support & Future Plans  
-Love this project? Support its development on [Ko-fi](https://ko-fi.com/questifyer)! With enough support, I’ll build a **free platform** for creating, editing, and hosting interactive maps — no coding required!  
-
----
-
-## 🚀 Quick Start  
-1. Download the project.  
-2. Replace the sample files in `assets/user` with your own.  
-3. Tweak `config.json` to match your assets and preferences.  
-4. Host locally or deploy via GitHub Pages!  
-
-**Need help?** Check the included `config_sample.json` and `assets/user` examples!  
-
---- 
+## Support & Future Plans  
+Love this project? Support its development on [Ko-fi](https://ko-fi.com/questifyer)! With enough support, I’ll build a **free platform** for creating, editing, and hosting interactive maps - no coding required!  
 
 Crafted with 🔥 by ***Bryan Gomes Saraiva*** | [Report Issues](https://github.com/your-repo/issues)
-```
