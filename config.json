@@ -20,8 +20,8 @@
         "TEST-TrackMousePosition": false
     },
     "Maps": {
-        "Grid": "map_grid.jpg",
-        "Gridless": "map_gridless.jpg"
+        "Grid": "map_grid.webp",
+        "Gridless": "map_gridless.webp"
     },
     "Overlays": {
         "Settlements": "overlay_settlements.webp",
