@@ -4,7 +4,7 @@ import { disableButton, handleGridToggle, handleSoundPanelToggle, setupTooltipLi
 import { handleDayNightToggle } from './daynight.js';
 import { handleWeatherToggle } from './weather.js';
 import { toggleOverlays, toggleOverlay } from './overlay.js';
-import { setupLoadingScreen } from './loading.js';
+import { setupMainLoadingScreen } from './loading.js';
 import { createAndPlayAudio, updateRegionSound } from './audio.js';
 import { processMouseMove, processMouseLeave } from './map_tooltips.js';
 
@@ -81,7 +81,7 @@ async function initializeLoading() {
     await loadConfigFile();
 
     // Setup loading screen and onload handler BEFORE setting the image source
-    setupLoadingScreen(wallpaper, redrawCanvas);
+    setupMainLoadingScreen(wallpaper, redrawCanvas);
 
     // Set the wallpaper source after attaching the onload handler
     if (MAP_FILES && MAP_FILES["Grid"]) {
