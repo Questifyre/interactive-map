@@ -2,9 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Alpha v0.3.0-ZN1] - 22-03-2025
+## Alpha v0.3.0-ZN1 - 22-03-2025
 
 This release focuses on performance improvements, code refactoring for better maintainability, and UI/UX enhancements.
+
+### Mobile Support
+
+* **Added Touch Support:** The application now support touch panning and zooming.
+* **UI/UX Improvements** Increased the size of various UI/UX elements for mobile, specially in Portrait mode.
 
 ### Performance Improvements
 
@@ -25,3 +30,15 @@ This release focuses on performance improvements, code refactoring for better ma
 * **Disabled text selection under the "Overlays" panel:** Text elements located under the "Overlays" panel are no longer selectable, preventing accidental text highlighting and improving the user experience.
 * **Redesigned "Toggle Grid" button icon:** The icon for the "Toggle Grid" button has been redesigned with a focus on aesthetics and clarity, making its function more easily understandable.
 * **Redesigned "Rain Weather" icon:** The icon representing "Rain Weather" has been updated with a more visually appealing and easily recognizable design.
+
+## Alpha v0.3.2-ZN2 / ZN3 - 22-03-2025
+
+This release deals with some issues leftover from the last update.
+
+### Performance Improvements
+
+* **Greatly reduced the background asset size:** Optimized the size of background and replaced it with a more fitting artstyle.
+
+### Bug Fixes
+
+* **Fixed Tooltips** Tooltip functionality has been restored.

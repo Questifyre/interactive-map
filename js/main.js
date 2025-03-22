@@ -65,10 +65,9 @@ export function startInteractiveMap() {
         }
     });
 
-    setupNavBarTooltipListeners();
-
     //Misc
     updateRegionSound();
+    setupNavBarTooltipListeners();
 }
 
 // Function to be passed as a callback for redrawing

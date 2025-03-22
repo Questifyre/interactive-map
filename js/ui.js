@@ -31,8 +31,8 @@ export function handleSoundPanelToggle() {
 }
 
 export function setupTooltipListeners() {
-    const navBarButtons = document.querySelectorAll('.nav-bar button');
-    const highlightMarkup = '*'; // Use asterisks to denote highlighted words
+    const navBarButtons = document.querySelectorAll('.nav-bar-button');
+    const highlightMarkup = '*';
 
     navBarButtons.forEach(button => {
         let tooltipElement = null;

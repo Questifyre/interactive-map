@@ -35,12 +35,12 @@
             "description": "Oaklen is conveniently placed on the other side of the Blue Bridge, and as such acts as a local hub for the Narminian population.",
             "area": {
                 "x": {
-                    "min": 2961,
-                    "max": 3338
+                    "min": 1480,
+                    "max": 1669
                 },
                 "y": {
-                    "min": 2519,
-                    "max": 2943
+                    "min": 1259,
+                    "max": 1471
                 }
             }
         },
@@ -49,12 +49,12 @@
             "description": "Humble Pewterden is the second largest settlement in Narmin, and a safe port for the occasional stragglers and ships passing through Riven.",
             "area": {
                 "x": {
-                    "min": 1034,
-                    "max": 1488
+                    "min": 517,
+                    "max": 744
                 },
                 "y": {
-                    "min": 3025,
-                    "max": 3474
+                    "min": 1512,
+                    "max": 1737
                 }
             }
         },
@@ -63,12 +63,12 @@
             "description": "Capital city and Jewel of Narmin, ships of all corners of the world dock in its bustling harbour. The city is a thriving hub of trade and culture.",
             "area": {
                 "x": {
-                    "min": 1099,
-                    "max": 1498
+                    "min": 549,
+                    "max": 749
                 },
                 "y": {
-                    "min": 1675,
-                    "max": 2182
+                    "min": 837,
+                    "max": 1091
                 }
             }
         },
@@ -77,12 +77,12 @@
             "description": "Owned by the Dartwood Dynasty, known for their hospitality. It has become a popular resting spot for those that are venturing towards the Verdant Spire.",
             "area": {
                 "x": {
-                    "min": 2672,
-                    "max": 2885
+                    "min": 1336,
+                    "max": 1442
                 },
                 "y": {
-                    "min": 1681,
-                    "max": 2056
+                    "min": 840,
+                    "max": 1028
                 }
             }
         },
@@ -91,12 +91,12 @@
             "description": "One of the oldest silver mines in all of Haven, Silvervein Hollow has been a large producer of income for the Kingdom for thousands of years.",
             "area": {
                 "x": {
-                    "min": 1401,
-                    "max": 1758
+                    "min": 700,
+                    "max": 879
                 },
                 "y": {
-                    "min": 2616,
-                    "max": 2986
+                    "min": 1308,
+                    "max": 1493
                 }
             }
         },
@@ -105,12 +105,12 @@
             "description": "Some say these ruins used to be a sprawling town, before a calamity befell on it. Others say it was home to the Verdant Spire before it shifted places. Nowadays it is known for its namesake song.",
             "area": {
                 "x": {
-                    "min": 3082,
-                    "max": 3458
+                    "min": 1541,
+                    "max": 1729
                 },
                 "y": {
-                    "min": 3296,
-                    "max": 3608
+                    "min": 1648,
+                    "max": 1804
                 }
             }
         },
@@ -119,12 +119,12 @@
             "description": "This Spire is known for the massive tree roots that surround and protect it, and is home to the Aspect of Nature.",
             "area": {
                 "x": {
-                    "min": 3510,
-                    "max": 3715
+                    "min": 1755,
+                    "max": 1857
                 },
                 "y": {
-                    "min": 1100,
-                    "max": 1510
+                    "min": 550,
+                    "max": 755
                 }
             }
         },
@@ -133,12 +133,12 @@
             "description": "This peaceful forest is home to a vast number of beavers, who have live peacefully by the shores of Raygan Channel.",
             "area": {
                 "x": {
-                    "min": 2912,
-                    "max": 3971
+                    "min": 1456,
+                    "max": 1985
                 },
                 "y": {
-                    "min": 2164,
-                    "max": 2514
+                    "min": 1082,
+                    "max": 1257
                 }
             }
         },
@@ -147,12 +147,12 @@
             "description": "This canopy is known for being the natural habitat of the proud Narminian Eagle.",
             "area": {
                 "x": {
-                    "min": 812,
-                    "max": 1821
+                    "min": 406,
+                    "max": 910
                 },
                 "y": {
-                    "min": 1370,
-                    "max": 1567
+                    "min": 685,
+                    "max": 783
                 }
             }
         },
@@ -161,12 +161,12 @@
             "description": "It is said that Raygan Channel is an unnatural occurrence, created by powerful wizards. Likely the same ones that made the forest that surrounds it in the North.",
             "area": {
                 "x": {
-                    "min": 3047,
-                    "max": 4523
+                    "min": 1523,
+                    "max": 2261
                 },
                 "y": {
-                    "min": 1827,
-                    "max": 2153
+                    "min": 913,
+                    "max": 1076
                 }
             }
         },
@@ -175,12 +175,12 @@
             "description": "Beauty is in the eyes of the beholder. But sometimes, it is actually at the end of a waterfall, in the form of a beautiful, expensive blue gem.",
             "area": {
                 "x": {
-                    "min": 616,
-                    "max": 1048
+                    "min": 308,
+                    "max": 524
                 },
                 "y": {
-                    "min": 1944,
-                    "max": 2331
+                    "min": 972,
+                    "max": 1165
                 }
             }
         },
@@ -189,12 +189,12 @@
             "description": "This forest, also known as 'The Green Maze', is a massive natural formation of trees that would turn even the sanest person mad if they dared trying to reach its centre.",
             "area": {
                 "x": {
-                    "min": 2529,
-                    "max": 3334
+                    "min": 1264,
+                    "max": 1667
                 },
                 "y": {
-                    "min": 1047,
-                    "max": 1304
+                    "min": 523,
+                    "max": 652
                 }
             }
         },
@@ -203,12 +203,12 @@
             "description": "It is said that this forest was once inhabited by dancing, silvery Fey. Now all that's left are the silver leaves occasionally found throughout it.",
             "area": {
                 "x": {
-                    "min": 512,
-                    "max": 1131
+                    "min": 256,
+                    "max": 565
                 },
                 "y": {
-                    "min": 2636,
-                    "max": 2979
+                    "min": 1318,
+                    "max": 1489
                 }
             }
         },
@@ -217,12 +217,12 @@
             "description": "This great river flows directly from the ocean towards the Capital city of Riven, allowing free flow of commerce and fishing. It also serves as a natural protective barrier.",
             "area": {
                 "x": {
-                    "min": 1094,
-                    "max": 2052
+                    "min": 547,
+                    "max": 1026
                 },
                 "y": {
-                    "min": 2204,
-                    "max": 2403
+                    "min": 1102,
+                    "max": 1201
                 }
             }
         }

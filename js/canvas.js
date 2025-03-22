@@ -25,7 +25,7 @@ export let currentWallpaperMatrix = new DOMMatrix();
 // -- Images --
 const wallpaper = new Image();
 const background = new Image();
-background.src = IMAGES_PATH + "map_background.jpg";
+background.src = IMAGES_PATH + "map_background.webp";
 
 export function drawWallpaper() {
     // Draw the background over the full screen.
