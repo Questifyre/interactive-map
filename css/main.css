@@ -3,4 +3,5 @@
 @import url('header.css');
 @import url('navbar.css');
 @import url('sound.css');
-@import url('overlays.css');
+@import url('overlays_panel.css');
+@import url('tooltips.css');

@@ -1,4 +1,4 @@
-.nav-bar {
+.bottom-nav-bar {
     position: fixed;
     bottom: 10px;
     left: 50%;
@@ -14,7 +14,7 @@
     max-width: 100%;
 }
 
-.nav-bar-header {
+.panel-header {
     position: fixed;
     bottom: 100%;
     left: 0;
@@ -31,7 +31,7 @@
     pointer-events: none;
 }
 
-.nav-bar button {
+.nav-bar-button {
     flex: 0 0 auto;
     background: none;
     border: none;
@@ -44,7 +44,7 @@
     transition: transform 0.2s ease;
 }
 
-.nav-bar button img {
+.nav-bar-button img {
     width: 100%;
     height: 100%;
     max-width: 40px;
@@ -54,7 +54,7 @@
     transition: transform 0.2s ease;
 }
 
-.nav-bar button:focus {
+.nav-bar-button:focus {
     outline: 2px solid rgb(175, 175, 175);
     outline-offset: 2px;
 }
@@ -66,19 +66,19 @@
         min-width: 250px;
     }
 
-    .nav-bar button img {
+    .nav-bar-button img {
         max-width: 35px;
         max-height: 35px;
     }
 
-    .nav-bar-header {
+    .panel-header {
         font-size: 1em;
         bottom: 65px;
     }
 }
 
 @media (hover: hover) {
-    .nav-bar button:hover img {
+    .nav-bar-button:hover img {
         transform: scale(1.1);
     }
 }

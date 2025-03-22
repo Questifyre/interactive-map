@@ -1,4 +1,4 @@
-import { BUTTON_PATH, CONFIG_SETTINGS, CONFIG_LOAD_PROMISE, OVERLAYS_PATH, OVERLAY_FILES, OVERLAYS_NAV_BAR_ID, OVERLAYS_NAV_BAR_HEADER_ID } from './config.js';
+import { CONFIG_SETTINGS, CONFIG_LOAD_PROMISE, OVERLAYS_PATH, OVERLAY_FILES, OVERLAYS_PANEL } from './config.js';
 import { createAndPlayAudio } from './audio.js';
 import { disableOverlay } from './ui.js';
 
@@ -74,14 +74,9 @@ let overlaysVisible = false; // Keep track of the overlays navbar visibility
 
 export function toggleOverlays() {
     overlaysVisible = !overlaysVisible;
-    const overlaysNavBar = document.getElementById(OVERLAYS_NAV_BAR_ID);
-    const overlaysNavBarHeader = document.getElementById(OVERLAYS_NAV_BAR_HEADER_ID);
-
-    if (overlaysNavBar) {
-        overlaysNavBar.style.display = overlaysVisible ? 'flex' : 'none';
-    }
-    if (overlaysNavBarHeader) {
-        overlaysNavBarHeader.style.display = overlaysVisible ? 'flex' : 'none';
+    const overlaysPanel = document.getElementById(OVERLAYS_PANEL);
+    if (overlaysPanel) {
+        overlaysPanel.style.display = overlaysVisible ? 'flex' : 'none';
     }
 }
 
@@ -100,14 +95,18 @@ export function toggleOverlay(overlayName, drawWallpaperCallback) {
         drawWallpaperCallback(); // Redraw to clear the overlay
     }
 
-    // Update button image
+    // Update item checkmark
     const overlayItem = Array.from(document.querySelectorAll('.overlay-list-item')).find(item =>
-        item.querySelector('.overlay-text').textContent === overlayName
+        item.querySelector('.overlay-list-item-text').textContent === overlayName
     );
     if (overlayItem) {
-        const buttonImg = overlayItem.querySelector('.non-interactive-button img');
-        if (buttonImg) {
-            buttonImg.src = isEnabled ? BUTTON_PATH + "enabled.png" : BUTTON_PATH + "disabled.png";
+        const button = overlayItem.querySelector('.panel-checkmark');
+        if (button) {
+            if (isEnabled) {
+                button.classList.add('checked');
+            } else {
+                button.classList.remove('checked');
+            }
         }
     }
 

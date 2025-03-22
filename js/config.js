@@ -78,8 +78,7 @@ export const SOUND_PANEL_ID = "soundPanel";
 export const HEADER_TEXT_ID = "headerText";
 export const HEADER_OVERLAY_ID = "header-overlay";
 export const OVERLAYS_BUTTON_ID = "overlaysButton";
-export const OVERLAYS_NAV_BAR_HEADER_ID = "overlays-nav-bar-header";
-export const OVERLAYS_NAV_BAR_ID = "overlays-nav-bar";
+export const OVERLAYS_PANEL = "overlays-panel";
 export const LOADING_SCREEN_ID = "loading-screen";
 
 // Cloud sprite paths

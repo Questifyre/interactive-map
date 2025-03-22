@@ -54,7 +54,7 @@ export function startInteractiveMap() {
 
     // Add event listeners for each overlay toggle
     document.querySelectorAll('.overlay-list-item').forEach(item => {
-        const overlayTextElement = item.querySelector('.overlay-text');
+        const overlayTextElement = item.querySelector('.overlay-list-item-text');
         if (overlayTextElement) {
             const overlayName = overlayTextElement.textContent;
             item.addEventListener('click', () => {

@@ -1,0 +1,42 @@
+.custom-tooltip-highlight {
+    z-index: 1001;
+    width: fit-content;
+    height: auto;
+    padding: 5px 10px;
+    background-color: rgba(26, 26, 26, 0.8);
+    border-radius: 5px;
+    color: rgb(204, 204, 204);
+    font-family: 'Modesto';
+    font-size: 1.1em;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.tooltip-highlighted {
+    font-weight: bold;
+    color: rgb(241, 241, 241);
+}
+
+.map-location-tooltip {
+    z-index: 1001;
+    width: fit-content;
+    min-width: 100px;
+    max-width: 20%;
+    height: auto;
+    padding: 5px 10px;
+    background-color: rgba(26, 26, 26, 0.8);
+    border-radius: 5px;
+    color: rgb(204, 204, 204);
+    font-family: 'Modesto';
+    font-size: 1.1em;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    position: fixed;
+}
