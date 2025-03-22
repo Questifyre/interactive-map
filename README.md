@@ -1,5 +1,4 @@
 # Questifyre's Interactive Map  
-**Unleash Your World, Breath by Pixel**
 
 ![Questifyre Banner](https://github.com/user-attachments/assets/924c88f0-e292-4ade-a171-da951e6bf22a)
 
@@ -7,7 +6,7 @@
 
 ---
 
-## 🚩 Table of Contents  
+## 🚩 Table of Contents
 - [Overview](#overview)  
 - [Features](#features)  
 - [Quick Start](#quick-start)  
@@ -19,12 +18,13 @@
 
 ---
 
-## Overview  
+## Overview
+**Unleash Your World, Breath by Pixel**
 Step into the heart of your tabletop realm with the **Questifyre Interactive Map** - a dynamic canvas where lore, atmosphere, and strategy collide. Crafted for Game Masters and players who crave immersion, this tool transforms static maps into living worlds.
 
 ---
 
-## Features  
+## Features
 - **⚙️ Extensive Customization**: Tailor map features, controls, and visuals to suit your campaign.  
 - **🗺️ Fluid Map Control**: Pan, zoom, and scale seamlessly for exploration or strategy.  
 - **⏱️ Atmospheric Customization**: Shift time of day and weather (rain, storms, overcast) to match your narrative.  
