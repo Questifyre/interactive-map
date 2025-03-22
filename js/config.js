@@ -79,7 +79,11 @@ export const HEADER_TEXT_ID = "headerText";
 export const HEADER_OVERLAY_ID = "header-overlay";
 export const OVERLAYS_BUTTON_ID = "overlaysButton";
 export const OVERLAYS_PANEL = "overlays-panel";
-export const LOADING_SCREEN_ID = "loading-screen";
+export const LOADING_SCREEN_MAIN_ID = "loading-screen-main";
+export const LOADING_CONTENT_MAIN_ID = "loading-content-main";
+export const LOADING_TIP_TEXT_ID = "loading-tip-text";
+export const LOADING_SCREEN_SECONDARY_ID = "loading-screen-secondary";
+export const LOADING_CONTENT_SECONDARY_ID = "loading-content-secondary";
 
 // Cloud sprite paths
 const CLOUDS_PATH = SPRITE_PATH + "clouds/";

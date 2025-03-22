@@ -1,4 +1,5 @@
 import { CONFIG_SETTINGS, CONFIG_LOAD_PROMISE, OVERLAYS_PATH, OVERLAY_FILES, OVERLAYS_PANEL } from './config.js';
+import { loadWithScreen } from './loading.js';
 import { createAndPlayAudio } from './audio.js';
 import { disableOverlay } from './ui.js';
 
@@ -84,15 +85,19 @@ export function toggleOverlay(overlayName, drawWallpaperCallback) {
     overlayStates[overlayName] = !overlayStates[overlayName];
     const isEnabled = overlayStates[overlayName];
     const imagePath = OVERLAYS_PATH + overlayNameMap[overlayName];
-
     // Load overlay image if enabled
     if (isEnabled) {
         overlayImages[overlayName] = new Image();
-        overlayImages[overlayName].onload = drawWallpaperCallback; // Redraw when loaded
+        overlayImages[overlayName].onload = drawWallpaperCallback;
         overlayImages[overlayName].src = imagePath;
+        loadWithScreen(async () => {
+            overlayImages[overlayName].onload = drawWallpaperCallback;
+        });
     } else {
-        overlayImages[overlayName] = null; // Remove the image when disabled
-        drawWallpaperCallback(); // Redraw to clear the overlay
+        overlayImages[overlayName] = null;
+        loadWithScreen(async () => {
+            await drawWallpaperCallback();
+        });
     }
 
     // Update item checkmark

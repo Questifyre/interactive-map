@@ -1,7 +1,8 @@
 @import url('global.css');
-@import url('loading.css');
+@import url('loading-main.css');
+@import url('loading-secondary.css');
 @import url('header.css');
 @import url('navbar.css');
 @import url('sound.css');
-@import url('overlays_panel.css');
+@import url('overlays-panel.css');
 @import url('tooltips.css');

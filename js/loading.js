@@ -1,15 +1,15 @@
-import { LOADING_SCREEN_ID } from './config.js';
+import { LOADING_SCREEN_MAIN_ID, LOADING_CONTENT_MAIN_ID, LOADING_TIP_TEXT_ID, LOADING_SCREEN_SECONDARY_ID, LOADING_CONTENT_SECONDARY_ID } from './config.js';
 import { animationLoop } from './canvas.js';
 import { startHeaderAnimation } from './header.js';
 import { startInteractiveMap } from './main.js';
 
 // ==============================
-// Loading Screen Handling
+// Main Loading Screen Handling
 // ==============================
-export function setupLoadingScreen(wallpaper, drawWallpaperCallback) {
-    const loadingScreen = document.getElementById(LOADING_SCREEN_ID);
-    const loadingContent = document.getElementById('loading-content');
-    const loadingTipText = document.getElementById('loading-tip-text');
+export function setupMainLoadingScreen(wallpaper, drawWallpaperCallback) {
+    const loadingScreen = document.getElementById(LOADING_SCREEN_MAIN_ID);
+    const loadingContent = document.getElementById(LOADING_CONTENT_MAIN_ID);
+    const loadingTipText = document.getElementById(LOADING_TIP_TEXT_ID);
 
     const loadingMessages = [
         "Consulting the ancient scrolls",
@@ -91,4 +91,52 @@ export function setupLoadingScreen(wallpaper, drawWallpaperCallback) {
         minimumDelayPassed = true;
         hideLoadingScreen();
     }, 3000);
+}
+
+// ==============================
+// Secondary Loading Screen Handling
+// ==============================
+const loadingScreen = document.getElementById(LOADING_SCREEN_SECONDARY_ID);
+const loadingContent = document.getElementById(LOADING_CONTENT_SECONDARY_ID);
+
+const showLoadingWidget = function () {
+    loadingScreen.style.display = 'flex';
+    loadingContent.style.display = 'flex';
+
+    let opacity = 0;
+    const fadeInterval = setInterval(() => {
+        opacity += 0.2;
+        loadingScreen.style.opacity = opacity;
+        loadingContent.style.opacity = opacity;
+
+        if (opacity >= 1) {
+            clearInterval(fadeInterval);
+        }
+    }, 20);
+}
+
+const hideLoadingWidget = function () {
+    let opacity = parseFloat(loadingScreen.style.opacity) || 1;
+    const fadeInterval = setInterval(() => {
+        opacity -= 0.2;
+        loadingScreen.style.opacity = opacity;
+        loadingContent.style.opacity = opacity;
+
+        if (opacity <= -0) {
+            clearInterval(fadeInterval);
+            loadingScreen.style.display = 'none';
+            loadingContent.style.display = 'none';
+        }
+    }, 20);
+}
+
+export async function loadWithScreen(task) {
+    showLoadingWidget();
+    await new Promise(r => requestAnimationFrame(r));
+
+    try {
+        return await task();
+    } finally {
+        hideLoadingWidget();
+    }
 }

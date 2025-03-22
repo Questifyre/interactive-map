@@ -1,4 +1,5 @@
 import { BUTTON_PATH, MAPS_PATH, MAP_FILES, SOUND_PANEL_ID, TOGGLE_GRID_BUTTON_ID } from './config.js';
+import { loadWithScreen } from './loading.js';
 
 // ==============================
 // User Interface Handling
@@ -20,7 +21,10 @@ export function handleGridToggle(wallpaper, drawWallpaperCallback) {
     if (gridButton && gridButton.querySelector("img")) {
         gridButton.querySelector("img").src = buttonImageSrc;
     }
-    wallpaper.onload = drawWallpaperCallback;
+
+    loadWithScreen(async () => {
+        wallpaper.onload = drawWallpaperCallback;
+    });
 }
 
 export function handleSoundPanelToggle() {
