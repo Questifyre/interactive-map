@@ -1,0 +1,245 @@
+{
+    "Settings": {
+        "Enable Grid Toggle": true,
+        "Enable Reset Zoom": true,
+        "Enable Day Time Toggle": true,
+        "Enable Sound Panel": true,
+        "Enable Weather Toggle": true,
+        "Enable Overlays": true,
+        "Welcome Header": "WRITE A HEADER HERE!",
+        "Zoom": {
+            "Min": 0.8,
+            "Max": 5
+        },
+        "Overlays": {
+            "Settlements": true,
+            "Landmarks": true,
+            "Land Routes": true,
+            "Sea Routes": true
+        },
+        "TEST-TrackMousePosition": false
+    },
+    "Maps": {
+        "Grid": "map_grid.jpg",
+        "Gridless": "map_gridless.jpg"
+    },
+    "Overlays": {
+        "Settlements": "overlay_settlements.webp",
+        "Landmarks": "overlay_landmarks.webp",
+        "Land Routes": "overlay_land_routes.webp",
+        "Sea Routes": "overlay_sea_routes.webp"
+    },
+    "Map Tooltips": [
+        {
+            "name": "Oaklen (Village)",
+            "description": "Oaklen is conveniently placed on the other side of the Blue Bridge, and as such acts as a local hub for the Narminian population.",
+            "area": {
+                "x": {
+                    "min": 2961,
+                    "max": 3338
+                },
+                "y": {
+                    "min": 2519,
+                    "max": 2943
+                }
+            }
+        },
+        {
+            "name": "Pewterden (Town)",
+            "description": "Humble Pewterden is the second largest settlement in Narmin, and a safe port for the occasional stragglers and ships passing through Riven.",
+            "area": {
+                "x": {
+                    "min": 1034,
+                    "max": 1488
+                },
+                "y": {
+                    "min": 3025,
+                    "max": 3474
+                }
+            }
+        },
+        {
+            "name": "Riven (Capital City)",
+            "description": "Capital city and Jewel of Narmin, ships of all corners of the world dock in its bustling harbour. The city is a thriving hub of trade and culture.",
+            "area": {
+                "x": {
+                    "min": 1099,
+                    "max": 1498
+                },
+                "y": {
+                    "min": 1675,
+                    "max": 2182
+                }
+            }
+        },
+        {
+            "name": "Dartwood Estate",
+            "description": "Owned by the Dartwood Dynasty, known for their hospitality. It has become a popular resting spot for those that are venturing towards the Verdant Spire.",
+            "area": {
+                "x": {
+                    "min": 2672,
+                    "max": 2885
+                },
+                "y": {
+                    "min": 1681,
+                    "max": 2056
+                }
+            }
+        },
+        {
+            "name": "Silvervein Hollow",
+            "description": "One of the oldest silver mines in all of Haven, Silvervein Hollow has been a large producer of income for the Kingdom for thousands of years.",
+            "area": {
+                "x": {
+                    "min": 1401,
+                    "max": 1758
+                },
+                "y": {
+                    "min": 2616,
+                    "max": 2986
+                }
+            }
+        },
+        {
+            "name": "Spiresong Ruins",
+            "description": "Some say these ruins used to be a sprawling town, before a calamity befell on it. Others say it was home to the Verdant Spire before it shifted places. Nowadays it is known for its namesake song.",
+            "area": {
+                "x": {
+                    "min": 3082,
+                    "max": 3458
+                },
+                "y": {
+                    "min": 3296,
+                    "max": 3608
+                }
+            }
+        },
+        {
+            "name": "Verdant Spire",
+            "description": "This Spire is known for the massive tree roots that surround and protect it, and is home to the Aspect of Nature.",
+            "area": {
+                "x": {
+                    "min": 3510,
+                    "max": 3715
+                },
+                "y": {
+                    "min": 1100,
+                    "max": 1510
+                }
+            }
+        },
+        {
+            "name": "Beaverduff Woods",
+            "description": "This peaceful forest is home to a vast number of beavers, who have live peacefully by the shores of Raygan Channel.",
+            "area": {
+                "x": {
+                    "min": 2912,
+                    "max": 3971
+                },
+                "y": {
+                    "min": 2164,
+                    "max": 2514
+                }
+            }
+        },
+        {
+            "name": "Eaglenest Canopy",
+            "description": "This canopy is known for being the natural habitat of the proud Narminian Eagle.",
+            "area": {
+                "x": {
+                    "min": 812,
+                    "max": 1821
+                },
+                "y": {
+                    "min": 1370,
+                    "max": 1567
+                }
+            }
+        },
+        {
+            "name": "Raygan Channel",
+            "description": "It is said that Raygan Channel is an unnatural occurrence, created by powerful wizards. Likely the same ones that made the forest that surrounds it in the North.",
+            "area": {
+                "x": {
+                    "min": 3047,
+                    "max": 4523
+                },
+                "y": {
+                    "min": 1827,
+                    "max": 2153
+                }
+            }
+        },
+        {
+            "name": "Saphire Falls",
+            "description": "Beauty is in the eyes of the beholder. But sometimes, it is actually at the end of a waterfall, in the form of a beautiful, expensive blue gem.",
+            "area": {
+                "x": {
+                    "min": 616,
+                    "max": 1048
+                },
+                "y": {
+                    "min": 1944,
+                    "max": 2331
+                }
+            }
+        },
+        {
+            "name": "Spiral Forest",
+            "description": "This forest, also known as 'The Green Maze', is a massive natural formation of trees that would turn even the sanest person mad if they dared trying to reach its centre.",
+            "area": {
+                "x": {
+                    "min": 2529,
+                    "max": 3334
+                },
+                "y": {
+                    "min": 1047,
+                    "max": 1304
+                }
+            }
+        },
+        {
+            "name": "Silverleaf Forest",
+            "description": "It is said that this forest was once inhabited by dancing, silvery Fey. Now all that's left are the silver leaves occasionally found throughout it.",
+            "area": {
+                "x": {
+                    "min": 512,
+                    "max": 1131
+                },
+                "y": {
+                    "min": 2636,
+                    "max": 2979
+                }
+            }
+        },
+        {
+            "name": "Tarn River",
+            "description": "This great river flows directly from the ocean towards the Capital city of Riven, allowing free flow of commerce and fishing. It also serves as a natural protective barrier.",
+            "area": {
+                "x": {
+                    "min": 1094,
+                    "max": 2052
+                },
+                "y": {
+                    "min": 2204,
+                    "max": 2403
+                }
+            }
+        }
+    ],
+    "Region Music": [
+        {
+            "sound path": "narmin_theme.mp3",
+            "area": {
+                "x": {
+                    "min": 0,
+                    "max": 9999
+                },
+                "y": {
+                    "min": 0,
+                    "max": 9999
+                }
+            }
+        }
+    ]
+}

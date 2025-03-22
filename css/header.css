@@ -1,0 +1,35 @@
+#header-overlay {
+    position: fixed;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+#header-overlay h1 {
+    font-family: 'Modesto';
+    font-size: 3em;
+    color: rgb(255, 255, 255);
+}
+
+#header-overlay h1 span {
+    color: white;
+    text-shadow:
+        -1px -1px 0 black,
+        /* Top-left */
+        1px -1px 0 black,
+        /* Top-right */
+        -1px 1px 0 black,
+        /* Bottom-left */
+        1px 1px 0 black,
+        /* Bottom-right */
+        -2px -2px 0 black,
+        /* Top-left (thicker) */
+        2px -2px 0 black,
+        /* Top-right (thicker) */
+        -2px 2px 0 black,
+        /* Bottom-left (thicker) */
+        2px 2px 0 black;
+    /* Bottom-right (thicker) */
+}

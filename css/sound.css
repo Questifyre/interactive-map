@@ -1,0 +1,37 @@
+.sound-panel {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    z-index: 1000;
+    display: none;
+    transform: translateX(-50%);
+    width: 250px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.65);
+    border-radius: 10px;
+    color: #fff;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    /* For Safari and older browsers */
+}
+
+.sound-widget {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.sound-widget:last-child {
+    margin-bottom: 0;
+}
+
+.sound-widget img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.sound-widget input[type="range"] {
+    flex-grow: 1;
+}

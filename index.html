@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Questifyre Alpha</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" href="Assets/favicon.png" type="image/png">
+</head>
+
+<body>
+
+    <div id="loading-screen">
+        <div id="loading-content">
+            <img src="assets/tool/images/icons/loading_logo.png" alt="Loading Logo" id="loading-logo">
+            <div id="loading-tip-text">‎ </div>
+            <div id="loading-version-text">Questifyre Alpha v0.2.0-YN1 Prototype</div>
+            <div id="loading-circle-container">
+                <div class="loading-circle"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="wallpaper-container">
+        <canvas id="questifyreInteractiveMap"></canvas>
+    </div>
+
+    <div id="header-overlay">
+        <h1 id="headerText"></h1>
+    </div>
+
+    <div class="nav-bar" id="tools-nav-bar">
+        <div class="nav-bar-header" id="tools-nav-bar-header">Tools</div>
+        <button id="toggleGridButton" data-tooltip="Toggle the *Hex Grid* between *On* / *Off*.">
+            <img src="assets/tool/images/icons/buttons/grid_0.png" alt="Toggle Grid">
+        </button>
+        <button id="resetZoomButton" data-tooltip="Reset *Pan* and *Zoom* to *Default*.">
+            <img src="assets/tool/images/icons/buttons/reset_zoom.png" alt="Reset Zoom">
+        </button>
+        <button id="dayNightButton" data-tooltip="Toggle the *Day Time* between *Day*, *Dusk* or *Night*.">
+            <img src="assets/tool/images/icons/buttons/day_night_0.png" alt="Day/Night">
+        </button>
+        <button id="soundPanelButton" data-tooltip="Configure *Audio Volume*.">
+            <img src="assets/tool/images/icons/buttons/sound_panel.png" alt="Sound Player">
+        </button>
+        <button id="weatherButton" data-tooltip="Toggle the *Weather* between *Clear*, *Overcast*, *Rain* and *Storm*.">
+            <img src="assets/tool/images/icons/buttons/weather_0.png" id="Weather">
+        </button>
+        <button id="overlaysButton"
+            data-tooltip="Enable various *Overlays*, to identify specific parts of the *World*.">
+            <img src="assets/tool/images/icons/buttons/overlays.png" id="Overlays">
+        </button>
+    </div>
+
+    <div id="soundPanel" class="sound-panel">
+        <div class="sound-widget" id="musicWidget">
+            <img src="assets/tool/images/icons/buttons/music_slider.png" alt="Music">
+            <input type="range" id="musicSlider" min="0" max="1" step="0.01" value="0.2">
+        </div>
+        <div class="sound-widget" id="ambianceWidget">
+            <img src="assets/tool/images/icons/buttons/ambiance_slider.png" alt="Ambiance">
+            <input type="range" id="ambianceSlider" min="0" max="1" step="0.01" value="0.3">
+        </div>
+    </div>
+
+    <div id="overlays-nav-bar-container">
+        <div class="nav-bar-header" id="overlays-nav-bar-header" style="display: none;">Overlays</div>
+        <div class="nav-bar" id="overlays-nav-bar"
+            style="display: none; flex-direction: column; align-items: flex-start; padding: 5px;">
+            <div id="settlements-overlay" class="overlay-list-item" style="background-color: rgba(0, 0, 0, 0.4);">
+                <span class="overlay-text">Settlements</span>
+                <button class="non-interactive-button">
+                    <img src="assets/tool/images/icons/buttons/disabled.png" alt="Overlay 1">
+                </button>
+            </div>
+            <div id="landmarks-overlay" class="overlay-list-item" style="background-color: rgba(0, 0, 0, 0.2);">
+                <span class="overlay-text">Landmarks</span>
+                <button class="non-interactive-button">
+                    <img src="assets/tool/images/icons/buttons/disabled.png" alt="Overlay 2">
+                </button>
+            </div>
+            <div id="land-routes-overlay" class="overlay-list-item" style="background-color: rgba(0, 0, 0, 0.4);">
+                <span class="overlay-text">Land Routes</span>
+                <button class="non-interactive-button">
+                    <img src="assets/tool/images/icons/buttons/disabled.png" alt="Overlay 3">
+                </button>
+            </div>
+            <div id="sea-routes-overlay" class="overlay-list-item" style="background-color: rgba(0, 0, 0, 0.2);">
+                <span class="overlay-text">Sea Routes</span>
+                <button class="non-interactive-button">
+                    <img src="assets/tool/images/icons/buttons/disabled.png" alt="Overlay 4">
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
