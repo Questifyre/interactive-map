@@ -1,6 +1,25 @@
-import { CONFIG_SETTINGS, CONFIG_LOAD_PROMISE, MAPS_PATH, MAP_FILES } from './config.js';
-import { drawWallpaper, getWallpaper, resetZoom } from './canvas.js';
-import { disableButton, handleGridToggle, handleSoundPanelToggle, setupTooltipListeners as setupNavBarTooltipListeners } from './ui.js';
+import {
+    CANVAS_ID,
+    CONFIG_SETTINGS,
+    CONFIG_LOAD_PROMISE,
+    DAY_NIGHT_BUTTON_ID,
+    MAPS_PATH,
+    MAP_FILES,
+    OVERLAYS_BUTTON_ID,
+    RESET_ZOOM_BUTTON_ID,
+    SOUND_PANEL_BUTTON_ID,
+    TOGGLE_GRID_BUTTON_ID,
+    WEATHER_BUTTON_ID
+} from './config.js';
+
+import {
+    disableButton,
+    handleGridToggle,
+    handleSoundPanelToggle,
+    setupNavBarTooltipListeners
+} from './ui.js';
+
+import { drawWallpaper, getWallpaper, resetView } from './canvas.js';
 import { handleDayNightToggle } from './daynight.js';
 import { handleWeatherToggle } from './weather.js';
 import { toggleOverlays, toggleOverlay } from './overlay.js';
@@ -14,36 +33,35 @@ import { processMouseMove, processMouseLeave } from './map_tooltips.js';
 
 // Get the wallpaper image from canvas.js
 const wallpaper = getWallpaper();
-const canvas = document.getElementById('questifyreInteractiveMap');
+const canvas = document.getElementById(CANVAS_ID);
 const ctx = canvas.getContext('2d');
 
 // Set Misc variables
 const EFFECT_PATH = "effects/";
 
 export function startInteractiveMap() {
-
     // Add event listeners for Tool Nav Bar elements
-    document.getElementById('toggleGridButton').addEventListener('click', () => {
+    document.getElementById(TOGGLE_GRID_BUTTON_ID).addEventListener('click', () => {
         createAndPlayAudio(EFFECT_PATH + "toggle_grid.mp3", 0.3);
         handleGridToggle(wallpaper, redrawCanvas);
     });
-    document.getElementById('resetZoomButton').addEventListener('click', () => {
+    document.getElementById(RESET_ZOOM_BUTTON_ID).addEventListener('click', () => {
         createAndPlayAudio(EFFECT_PATH + "reset_zoom.mp3", 0.3);
-        resetZoom();
+        resetView();
     });
-    document.getElementById('dayNightButton').addEventListener('click', () => {
+    document.getElementById(DAY_NIGHT_BUTTON_ID).addEventListener('click', () => {
         createAndPlayAudio(EFFECT_PATH + "toggle_time.mp3", 0.3);
         handleDayNightToggle();
     });
-    document.getElementById('soundPanelButton').addEventListener('click', () => {
+    document.getElementById(SOUND_PANEL_BUTTON_ID).addEventListener('click', () => {
         createAndPlayAudio(EFFECT_PATH + "toggle_sound_panel.mp3", 0.3);
         handleSoundPanelToggle();
     });
-    document.getElementById('weatherButton').addEventListener('click', () => {
+    document.getElementById(WEATHER_BUTTON_ID).addEventListener('click', () => {
         createAndPlayAudio(EFFECT_PATH + "toggle_weather.mp3", 0.3);
         handleWeatherToggle();
     });
-    document.getElementById('overlaysButton').addEventListener('click', () => {
+    document.getElementById(OVERLAYS_BUTTON_ID).addEventListener('click', () => {
         createAndPlayAudio(EFFECT_PATH + "toggle_overlays.mp3", 0.3);
         toggleOverlays();
     });
@@ -99,29 +117,15 @@ async function loadConfigFile() {
     await CONFIG_LOAD_PROMISE;
     try {
         if (CONFIG_SETTINGS) {
-            if (!CONFIG_SETTINGS["Enable Grid Toggle"]) {
-                disableButton('toggleGridButton');
-            }
+            let titleSuffix = " | Questifyre"
+            document.title = CONFIG_SETTINGS["Page Title"] + titleSuffix ?? document.title + titleSuffix;
 
-            if (!CONFIG_SETTINGS["Enable Reset Zoom"]) {
-                disableButton('resetZoomButton');
-            }
-
-            if (!CONFIG_SETTINGS["Enable Day Time Toggle"]) {
-                disableButton('dayNightButton');
-            }
-
-            if (!CONFIG_SETTINGS["Enable Sound Panel"]) {
-                disableButton('soundPanelButton');
-            }
-
-            if (!CONFIG_SETTINGS["Enable Weather Toggle"]) {
-                disableButton('weatherButton');
-            }
-
-            if (!CONFIG_SETTINGS["Enable Overlays"]) {
-                disableButton('overlaysButton');
-            }
+            !CONFIG_SETTINGS["Enable Grid Toggle"] && disableButton('toggle-grid-button');
+            !CONFIG_SETTINGS["Enable Reset View"] && disableButton('reset-view-button');
+            !CONFIG_SETTINGS["Enable Day Time Toggle"] && disableButton('day-night-button');
+            !CONFIG_SETTINGS["Enable Sound Panel"] && disableButton('sound-panel-button');
+            !CONFIG_SETTINGS["Enable Weather Toggle"] && disableButton('weather-button');
+            !CONFIG_SETTINGS["Enable Overlays"] && disableButton('overlays-button');
         }
     } catch (error) {
         console.error('Could not load config settings from configs file:', error);

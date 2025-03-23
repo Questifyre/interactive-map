@@ -21,7 +21,7 @@ body {
     overflow: hidden;
 }
 
-#questifyreInteractiveMap {
+#questifyre-interactive-map {
     display: block;
     cursor: grab;
     touch-action: none;

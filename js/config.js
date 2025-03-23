@@ -12,7 +12,7 @@ export let MAX_ZOOM_SCALE = 3;
 export let REGION_MUSIC_DATA;
 
 // Tool Asset Paths
-export const CANVAS_ID = "questifyreInteractiveMap";
+export const CANVAS_ID = "questifyre-interactive-map";
 export const TOOL_ASSET_PATH = "assets/tool/";
 export const AUDIO_PATH = TOOL_ASSET_PATH + "audio/";
 export const AMBIANCE_PATH = AUDIO_PATH + "ambiances/";
@@ -37,7 +37,6 @@ export const AMBIANCE_MAX_VOLUME = 0.3;
 export const MUSIC_MAX_VOLUME = 0.2;
 
 // Music Region Sound Configs
-export const REGION_SOUND_DELAY = 5000;
 export const CROSSFADE_DURATION = 1500;
 export const OVERLAY_FADE_DURATION = 500;
 
@@ -46,10 +45,6 @@ export const TYPING_SPEED = 150;
 export const CHARACTER_FADE_DURATION = 500;
 export const HEADER_STAY_DURATION = 2000;
 export const CHARACTER_SPACING = "10px";
-
-// UI Calculation configs
-export const REFERENCE_WIDTH = 1920;
-export const REFERENCE_HEIGHT = 1080;
 
 // Weather states
 export const WEATHER_SUNNY = 0;
@@ -71,13 +66,15 @@ export const NIGHT = 2;
 // DOM Element IDs
 export const AMBIANCE_SLIDER_ID = "ambianceSlider";
 export const MUSIC_SLIDER_ID = "musicSlider";
-export const TOGGLE_GRID_BUTTON_ID = "toggleGridButton";
-export const WEATHER_BUTTON_ID = "weatherButton";
-export const DAY_NIGHT_BUTTON_ID = "dayNightButton";
+export const TOGGLE_GRID_BUTTON_ID = "toggle-grid-button";
+export const RESET_ZOOM_BUTTON_ID = "reset-view-button";
+export const WEATHER_BUTTON_ID = "weather-button";
+export const DAY_NIGHT_BUTTON_ID = "day-night-button";
 export const SOUND_PANEL_ID = "soundPanel";
-export const HEADER_TEXT_ID = "headerText";
+export const SOUND_PANEL_BUTTON_ID = "sound-panel-button";
+export const HEADER_TEXT_ID = "header-text";
 export const HEADER_OVERLAY_ID = "header-overlay";
-export const OVERLAYS_BUTTON_ID = "overlaysButton";
+export const OVERLAYS_BUTTON_ID = "overlays-button";
 export const OVERLAYS_PANEL = "overlays-panel";
 export const LOADING_SCREEN_MAIN_ID = "loading-screen-main";
 export const LOADING_CONTENT_MAIN_ID = "loading-content-main";

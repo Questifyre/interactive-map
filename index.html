@@ -3,9 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Questifyre Alpha</title>
+    <title>Interactive Map | Questifyre</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="icon" href="Assets/favicon.png" type="image/png">
+    <script>
+        document.addEventListener('readystatechange', () => {
+            if (document.readyState === 'interactive') {
+                document.documentElement.style.visibility = 'hidden';
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.documentElement.style.visibility = '';
+                });
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -14,7 +24,7 @@
         <div id="loading-content-main">
             <img src="assets/tool/images/icons/loading_logo.png" alt="Loading Logo" id="loading-logo">
             <div id="loading-tip-text">‎ </div>
-            <div id="loading-version-text">Questifyre Alpha v0.4.0-AN1 Prototype</div>
+            <div id="loading-version-text">Questifyre Alpha v0.5.0-BN1 Prototype</div>
             <div id="loading-circle-container-main">
                 <div class="loading-circle-main"></div>
             </div>
@@ -30,39 +40,40 @@
     </div>
 
     <div id="wallpaper-container">
-        <canvas id="questifyreInteractiveMap"></canvas>
+        <canvas id="questifyre-interactive-map"></canvas>
     </div>
 
     <div id="header-overlay">
-        <h1 id="headerText"></h1>
+        <h1 id="header-text"></h1>
     </div>
 
     <div class="bottom-nav-bar">
         <div class="panel-header">Tools</div>
-        <button class="nav-bar-button" id="toggleGridButton" data-tooltip="Toggle the *Hex Grid* between *On* / *Off*.">
+        <button class="nav-bar-button" id="toggle-grid-button"
+            data-tooltip="Toggle the *Hex Grid* between *On* / *Off*.">
             <img src="assets/tool/images/icons/buttons/grid_0.png" alt="Toggle Grid">
         </button>
-        <button class="nav-bar-button" id="resetZoomButton" data-tooltip="Reset *Pan* and *Zoom* to *Default*.">
-            <img src="assets/tool/images/icons/buttons/reset_zoom.png" alt="Reset Zoom">
+        <button class="nav-bar-button" id="reset-view-button" data-tooltip="Reset *Pan* and *Zoom* to *Default*.">
+            <img src="assets/tool/images/icons/buttons/reset_view.png" alt="Reset Zoom">
         </button>
-        <button class="nav-bar-button" id="dayNightButton"
+        <button class="nav-bar-button" id="day-night-button"
             data-tooltip="Toggle the *Day Time* between *Day*, *Dusk* or *Night*.">
             <img src="assets/tool/images/icons/buttons/day_night_0.png" alt="Day/Night">
         </button>
-        <button class="nav-bar-button" id="soundPanelButton" data-tooltip="Configure *Audio Volume*.">
+        <button class="nav-bar-button" id="sound-panel-button" data-tooltip="Configure *Audio Volume*.">
             <img src="assets/tool/images/icons/buttons/sound_panel.png" alt="Sound Player">
         </button>
-        <button class="nav-bar-button" id="weatherButton"
+        <button class="nav-bar-button" id="weather-button"
             data-tooltip="Toggle the *Weather* between *Clear*, *Overcast*, *Rain* and *Storm*.">
             <img src="assets/tool/images/icons/buttons/weather_0.png" id="Weather">
         </button>
-        <button class="nav-bar-button" id="overlaysButton"
+        <button class="nav-bar-button" id="overlays-button"
             data-tooltip="Enable various *Overlays*, to identify specific parts of the *World*.">
             <img src="assets/tool/images/icons/buttons/overlays.png" id="Overlays">
         </button>
     </div>
 
-    <div class="overlays-panel" id="overlays-panel" style="display: none;">
+    <div class="overlays-panel" id="overlays-panel">
         <div class="panel-header" id="overlays-panel-header">Overlays</div>
         <div id="settlements-overlay" class="overlay-list-item" style="background-color: rgba(0, 0, 0, 0.4);">
             <span class="overlay-list-item-text">Settlements</span>

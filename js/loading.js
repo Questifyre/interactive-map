@@ -96,27 +96,20 @@ export function setupMainLoadingScreen(wallpaper, drawWallpaperCallback) {
 // ==============================
 // Secondary Loading Screen Handling
 // ==============================
+
 const loadingScreen = document.getElementById(LOADING_SCREEN_SECONDARY_ID);
 const loadingContent = document.getElementById(LOADING_CONTENT_SECONDARY_ID);
+const DELAY_MS = 1;
 
 const showLoadingWidget = function () {
     loadingScreen.style.display = 'flex';
     loadingContent.style.display = 'flex';
-
-    let opacity = 0;
-    const fadeInterval = setInterval(() => {
-        opacity += 0.2;
-        loadingScreen.style.opacity = opacity;
-        loadingContent.style.opacity = opacity;
-
-        if (opacity >= 1) {
-            clearInterval(fadeInterval);
-        }
-    }, 20);
 }
 
 const hideLoadingWidget = function () {
-    let opacity = parseFloat(loadingScreen.style.opacity) || 1;
+    loadingScreen.style.opacity = 1;
+    loadingContent.style.opacity = 1;
+    let opacity = 1;
     const fadeInterval = setInterval(() => {
         opacity -= 0.2;
         loadingScreen.style.opacity = opacity;
@@ -131,12 +124,48 @@ const hideLoadingWidget = function () {
 }
 
 export async function loadWithScreen(task) {
-    showLoadingWidget();
-    await new Promise(r => requestAnimationFrame(r));
+    let timeoutId;
+    let loadingShown = false;
+    let taskCompleted = false;
+
+    timeoutId = setTimeout(() => {
+        if (!taskCompleted) {
+            showLoadingWidget();
+            loadingShown = true;
+        }
+    }, DELAY_MS);
 
     try {
-        return await task();
-    } finally {
-        hideLoadingWidget();
+        const result = await task();
+        taskCompleted = true;
+        clearTimeout(timeoutId);
+        if (loadingShown) {
+            hideLoadingWidget();
+        }
+        return result;
+    } catch (error) {
+        taskCompleted = true;
+        clearTimeout(timeoutId);
+        if (loadingShown) {
+            hideLoadingWidget();
+        }
+        throw error;
     }
+}
+
+// ==============================
+// Utilities
+// ==============================
+
+export async function loadImageWithCache(newSrc, existingImage) {
+    if (existingImage?.src === newSrc && existingImage.complete) {
+        return existingImage;
+    }
+
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = newSrc;
+    });
 }

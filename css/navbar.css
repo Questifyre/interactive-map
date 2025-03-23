@@ -59,21 +59,25 @@
     outline-offset: 2px;
 }
 
-@media (max-width: 768px) {
-    .nav-bar {
-        gap: 0.5rem;
-        padding: 8px;
-        min-width: 250px;
-    }
-
-    .nav-bar-button img {
-        max-width: 35px;
-        max-height: 35px;
+@media (orientation: portrait) {
+    .bottom-nav-bar {
+        padding: 19px 31px;
+        gap: 2.34rem;
     }
 
     .panel-header {
-        font-size: 1em;
-        bottom: 65px;
+        padding: 8px 31px;
+        font-size: 1.87em;
+    }
+
+    .nav-bar-button {
+        min-width: 62px;
+        min-height: 62px;
+    }
+
+    .nav-bar-button img {
+        max-width: 62px;
+        max-height: 62px;
     }
 }
 

@@ -1,7 +1,8 @@
 {
     "Settings": {
+        "Page Title": "Sample Map",
         "Enable Grid Toggle": true,
-        "Enable Reset Zoom": true,
+        "Enable Reset View": true,
         "Enable Day Time Toggle": true,
         "Enable Sound Panel": true,
         "Enable Weather Toggle": true,

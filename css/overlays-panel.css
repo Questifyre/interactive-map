@@ -3,7 +3,7 @@
     z-index: 9999;
     top: 50vh;
     left: 10px;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: flex-start;
     min-width: 220px;
@@ -77,4 +77,33 @@
 .panel-checkmark.checked::after {
     border-color: white;
     opacity: 1;
+}
+
+@media (orientation: portrait) {
+    .overlays-panel {
+        left: 18px;
+        min-width: 400px;
+        padding: 9px;
+        border-radius: 0 18px 18px 18px;
+    }
+
+    .overlay-list-item {
+        padding: 14px 9px;
+        margin-bottom: 4px;
+        border-radius: 9px;
+    }
+
+    .overlay-list-item-text {
+        padding-left: 9px;
+        font-size: 1.82em;
+    }
+
+    .panel-checkmark {
+        right: 9px;
+        box-shadow: 1.82px 1.82px 5.2px rgba(0, 0, 0, 1);
+    }
+
+    .panel-checkmark::after {
+        border-width: 0 0 5.2px 5.2px;
+    }
 }

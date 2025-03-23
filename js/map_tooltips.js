@@ -1,7 +1,7 @@
-import { CONFIG_SETTINGS, MAP_TOOLTIPS, } from './config.js';
+import { CANVAS_ID, CONFIG_SETTINGS, MAP_TOOLTIPS, } from './config.js';
 import { currentWallpaperMatrix } from './canvas.js';
 
-const canvas = document.getElementById('questifyreInteractiveMap');
+const canvas = document.getElementById(CANVAS_ID);
 
 function getRelativeCoordinates(event, canvas) {
     const rect = canvas.getBoundingClientRect();

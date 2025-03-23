@@ -6,24 +6,33 @@ import { loadWithScreen } from './loading.js';
 // ==============================
 
 let gridActive = true;
-
-export function handleGridToggle(wallpaper, drawWallpaperCallback) {
-    gridActive = !gridActive;
-
-    if (MAP_FILES && MAP_FILES["Grid"]) {
-        wallpaper.src = gridActive ? MAPS_PATH + MAP_FILES["Grid"] : MAPS_PATH + MAP_FILES["Gridless"];
-    } else {
-        console.error('Couldn\'t switch Map Files! Map File not found.');
-    }
-
+const gridButton = document.getElementById(TOGGLE_GRID_BUTTON_ID);
+const updateGridButtonVisual = function () {
     const buttonImageSrc = gridActive ? BUTTON_PATH + "grid_0.png" : BUTTON_PATH + "grid_1.png";
-    const gridButton = document.getElementById(TOGGLE_GRID_BUTTON_ID);
     if (gridButton && gridButton.querySelector("img")) {
         gridButton.querySelector("img").src = buttonImageSrc;
     }
+}
 
-    loadWithScreen(async () => {
-        wallpaper.onload = drawWallpaperCallback;
+export async function handleGridToggle(wallpaper, drawWallpaperCallback) {
+    gridActive = !gridActive;
+    updateGridButtonVisual();
+
+    // Async loading with threshold
+    await loadWithScreen(async () => {
+        await swapWallpaperImage(wallpaper);
+        await drawWallpaperCallback();
+    });
+}
+
+// Dedicated async image loader
+async function swapWallpaperImage(imgElement) {
+    const newSrc = gridActive ? MAPS_PATH + MAP_FILES["Grid"] : MAPS_PATH + MAP_FILES["Gridless"];
+    if (imgElement.src === newSrc) return;
+
+    return new Promise((resolve) => {
+        imgElement.onload = () => resolve();
+        imgElement.src = newSrc;
     });
 }
 
@@ -34,7 +43,7 @@ export function handleSoundPanelToggle() {
     }
 }
 
-export function setupTooltipListeners() {
+export function setupNavBarTooltipListeners() {
     const navBarButtons = document.querySelectorAll('.nav-bar-button');
     const highlightMarkup = '*';
 

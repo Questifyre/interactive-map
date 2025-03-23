@@ -103,7 +103,7 @@ export const animationLoop = (timestamp) => {
     requestAnimationFrame(animationLoop);
 };
 
-export function resetZoom() {
+export function resetView() {
     scale = 1;
     offsetX = 0;
     offsetY = 0;
@@ -132,13 +132,14 @@ export function tryUpdateRegionSound() {
 const setupCanvasInteractions = (canvas) => {
     let isDragging = false;
     let isPinching = false;
-    let startDragX, startDragY;
-    let initialDistance, lastScale;
-
+    let startX, startY, initialOffsetX, initialOffsetY;
+    let initialDistance;
+    const ZOOM_SENSITIVITY = 0.6;
+    const PAN_THRESHOLD = 5;
+    const WHEEL_ZOOM_SPEED = 0.002;
     const CURSOR_GRAB = 'grab';
     const CURSOR_GRABBING = 'grabbing';
 
-    // Common handlers
     const updateCanvas = () => {
         drawWallpaper();
         tryUpdateRegionSound();
@@ -146,52 +147,42 @@ const setupCanvasInteractions = (canvas) => {
 
     const handleDragStart = (clientX, clientY) => {
         isDragging = true;
-        startDragX = clientX - offsetX;
-        startDragY = clientY - offsetY;
+        startX = clientX;
+        startY = clientY;
+        initialOffsetX = offsetX;
+        initialOffsetY = offsetY;
         canvas.style.cursor = CURSOR_GRABBING;
     };
 
     const handleDragMove = (clientX, clientY) => {
         if (!isDragging) return;
-        offsetX = clientX - startDragX;
-        offsetY = clientY - startDragY;
+        const dx = clientX - startX;
+        const dy = clientY - startY;
+        offsetX = initialOffsetX + dx;
+        offsetY = initialOffsetY + dy;
         updateCanvas();
     };
 
-    const handleZoom = (zoomFactor, centerX, centerY) => {
-        const constrainedScale = Math.min(Math.max(scale * zoomFactor, MIN_ZOOM_SCALE), MAX_ZOOM_SCALE);
+    const handleZoom = (zoomFactor, centerX, centerY, isTouch = false) => {
+        const sensitivity = isTouch ? ZOOM_SENSITIVITY : 1;
+        const scaledZoom = Math.pow(zoomFactor, sensitivity);
+        const constrainedScale = Math.min(Math.max(scale * scaledZoom, MIN_ZOOM_SCALE), MAX_ZOOM_SCALE);
         const scaleRatio = constrainedScale / scale;
-
         offsetX = centerX - (centerX - offsetX) * scaleRatio;
         offsetY = centerY - (centerY - offsetY) * scaleRatio;
         scale = constrainedScale;
-
         updateCanvas();
     };
 
-    // Mouse events
     canvas.addEventListener('wheel', e => {
         e.preventDefault();
-        const zoomFactor = 1 + (-e.deltaY * 0.001);
+        const zoomFactor = 1 + (-e.deltaY * WHEEL_ZOOM_SPEED);
         const rect = canvas.getBoundingClientRect();
         handleZoom(zoomFactor, e.clientX - rect.left, e.clientY - rect.top);
     }, { passive: false });
 
     canvas.addEventListener('mousedown', e => handleDragStart(e.clientX, e.clientY));
-
     canvas.addEventListener('mousemove', e => handleDragMove(e.clientX, e.clientY));
-
-    // Touch events
-    const handlePinchZoom = (e) => {
-        const newDistance = getDistanceBetweenTouches(e);
-        const rect = canvas.getBoundingClientRect();
-        const [touch1, touch2] = e.touches;
-
-        const centerX = (touch1.clientX + touch2.clientX) / 2 - rect.left;
-        const centerY = (touch1.clientY + touch2.clientY) / 2 - rect.top;
-
-        handleZoom(newDistance / initialDistance, centerX, centerY);
-    };
 
     canvas.addEventListener('touchstart', e => {
         e.preventDefault();
@@ -199,20 +190,31 @@ const setupCanvasInteractions = (canvas) => {
             handleDragStart(e.touches[0].clientX, e.touches[0].clientY);
         } else if (e.touches.length === 2) {
             isPinching = true;
+            isDragging = false;
             initialDistance = getDistanceBetweenTouches(e);
-            lastScale = scale;
         }
     }, { passive: false });
 
     canvas.addEventListener('touchmove', e => {
-        if (isDragging && e.touches.length === 1) {
-            handleDragMove(e.touches[0].clientX, e.touches[0].clientY);
-        } else if (isPinching && e.touches.length === 2) {
-            handlePinchZoom(e);
+        if (isPinching && e.touches.length === 2) {
+            const newDistance = getDistanceBetweenTouches(e);
+            const rect = canvas.getBoundingClientRect();
+            const centerX = (e.touches[0].clientX + e.touches[1].clientX) / 2 - rect.left;
+            const centerY = (e.touches[0].clientY + e.touches[1].clientY) / 2 - rect.top;
+            handleZoom(newDistance / initialDistance, centerX, centerY, true);
+            initialDistance = newDistance;
+        } else if (isDragging && e.touches.length === 1) {
+            const touch = e.touches[0];
+            const dx = touch.clientX - startX;
+            const dy = touch.clientY - startY;
+            if (Math.hypot(dx, dy) > PAN_THRESHOLD) {
+                offsetX = initialOffsetX + dx;
+                offsetY = initialOffsetY + dy;
+                updateCanvas();
+            }
         }
     }, { passive: false });
 
-    // Cleanup events
     const endInteraction = () => {
         isDragging = false;
         isPinching = false;
@@ -220,19 +222,20 @@ const setupCanvasInteractions = (canvas) => {
         tryUpdateRegionSound();
     };
 
-    ['mouseup', 'mouseleave'].forEach(type =>
-        canvas.addEventListener(type, endInteraction)
-    );
-
-    canvas.addEventListener('touchend', e =>
-        e.touches.length === 0 && endInteraction()
-    );
-
-    // Helper function
     const getDistanceBetweenTouches = e => Math.hypot(
         e.touches[0].clientX - e.touches[1].clientX,
         e.touches[0].clientY - e.touches[1].clientY
     );
+
+    canvas.addEventListener('touchend', e => {
+        if (e.touches.length === 0) {
+            endInteraction();
+            initialDistance = null;
+        }
+    });
+
+    document.addEventListener('mouseup', endInteraction);
+    canvas.addEventListener('mouseleave', endInteraction);
 };
 
 setupCanvasInteractions(canvas);
