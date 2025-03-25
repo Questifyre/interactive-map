@@ -41,7 +41,7 @@ Step into the heart of your tabletop realm with the **Questifyre Interactive Map
 3. Tweak `config.json` to match your assets and preferences.  
 4. Host locally or deploy via GitHub Pages!  
 
-**Need help?** Check the included `config_sample.json` and `assets/user` examples!  
+**Need help?** Check the included sample `config.json` and `assets/user` examples!  
 
 --- 
 
@@ -64,20 +64,30 @@ Step into the heart of your tabletop realm with the **Questifyre Interactive Map
 ---
 
 ### Editing `config.json`  
-Customize the map’s behavior by modifying the `config.json` file.  
+Customize the map’s behavior by modifying the `config.json` file, or utilizing `Dev Tools` by enabling the `Developer Mode` option.  
 
 #### Basic Settings  
 ```json  
 "Settings": {  
-    "Enable Grid Toggle": true,  
-    "Enable Reset Zoom": true,  
-    "Enable Day Time Toggle": true,  
-    "Enable Sound Panel": true,  
+    "Page Title": "Map Name",
+    "Enable Grid Toggle": true,
+    "Enable Reset View": true,
+    "Enable Day Time Toggle": true,
+    "Enable Sound Panel": true,
+    "Enable Weather Toggle": true,
+    "Enable Overlays": true,
     "Welcome Header": "Welcome to My Campaign!",  
+    "Developer Mode": true
     "Zoom": {  
         "Min": 0.8,  
         "Max": 5  
-    }  
+    },
+    "Overlays": {
+        "Settlements": true,
+        "Landmarks": true,
+        "Land Routes": true,
+        "Sea Routes": true
+    },
 }  
 ```  
 
@@ -88,8 +98,10 @@ Customize the map’s behavior by modifying the `config.json` file.
     "Gridless": "map_gridless.jpg"  
 },  
 "Overlays": {  
-    "Settlements": "overlay_settlements.png",  
-    "Landmarks": "overlay_landmarks.png"  
+    "Settlements": "overlay_settlements.webp",
+    "Landmarks": "overlay_landmarks.webp",
+    "Land Routes": "overlay_land_routes.webp",
+    "Sea Routes": "overlay_sea_routes.webp"
 }  
 ```  
 - **Example**: If your map is `assets/user/maps/fantasy_map.jpg`, set `"Grid": "fantasy_map.jpg"`.  
@@ -113,8 +125,10 @@ Customize the map’s behavior by modifying the `config.json` file.
 ]  
 ```  
 
-#### Coordinate Tracking  
-Enable `"TEST-TrackMousePosition": true` to log mouse coordinates in the browser console. Use this to fine-tune tooltip and music regions!  
+#### Dev Tools
+Set `"Developer Mode": true` to enable several **Developer Tools** that will assist you in configuring your map. Such tools include:
+- Defining Map Areas. Use this to draw Map Tooltips and Regional Sounds!
+- Logging mouse coordinates in real-time. Use this for fine-tuning!
 
 ---
 
