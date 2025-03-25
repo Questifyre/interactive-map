@@ -1,12 +1,12 @@
 .custom-tooltip-highlight {
-    z-index: 1001;
+    z-index: 201;
     width: fit-content;
     height: auto;
     padding: 5px 10px;
     background-color: rgba(26, 26, 26, 0.8);
     border-radius: 5px;
     color: rgb(204, 204, 204);
-    font-family: 'Modesto';
+    font-family: 'Modesto', sans-serif;
     font-size: 1.1em;
     white-space: nowrap;
     opacity: 0;
@@ -21,8 +21,8 @@
     color: rgb(241, 241, 241);
 }
 
-.map-location-tooltip {
-    z-index: 1001;
+.interactive-map-tooltip {
+    z-index: 200;
     width: fit-content;
     min-width: 100px;
     max-width: 20%;
@@ -30,8 +30,8 @@
     padding: 5px 10px;
     background-color: rgba(26, 26, 26, 0.8);
     border-radius: 5px;
-    color: rgb(204, 204, 204);
-    font-family: 'Modesto';
+    color: white;
+    font-family: 'Modesto', sans-serif;
     font-size: 1.1em;
     opacity: 0;
     visibility: hidden;
@@ -39,4 +39,12 @@
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
     position: fixed;
+    pointer-events: none;
+    transform: translate3d(0, 0, 0);
+    will-change: transform, opacity;
+}
+
+.interactive-map-tooltip.visible {
+    opacity: 1;
+    visibility: visible;
 }

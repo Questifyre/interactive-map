@@ -11,8 +11,21 @@ export let MIN_ZOOM_SCALE = 0.8;
 export let MAX_ZOOM_SCALE = 3;
 export let REGION_MUSIC_DATA;
 
+// ==============================
+// Canvases
+// ==============================
+
+// Element IDs
+export const CANVAS_BACKGROUND_ID = "canvas-background";
+export const CANVAS_MAP_ID = "canvas-map";
+export const CANVAS_OVERLAYS_ID = "canvas-overlays";
+
+// DOMs
+export const CANVAS_BACKGROUND = document.getElementById(CANVAS_BACKGROUND_ID);
+export const CANVAS_MAP = document.getElementById(CANVAS_MAP_ID);
+export const CANVAS_OVERLAYS = document.getElementById(CANVAS_OVERLAYS_ID);
+
 // Tool Asset Paths
-export const CANVAS_ID = "questifyre-interactive-map";
 export const TOOL_ASSET_PATH = "assets/tool/";
 export const AUDIO_PATH = TOOL_ASSET_PATH + "audio/";
 export const AMBIANCE_PATH = AUDIO_PATH + "ambiances/";
@@ -32,11 +45,36 @@ export const REGION_PATH = USER_AUDIO_PATH + "regions/";
 const USER_IMAGES_PATH = USER_ASSET_PATH + "images/";
 const USER_SPRITE_PATH = USER_IMAGES_PATH + "sprites/";
 
-// Audio configs
-export const AMBIANCE_MAX_VOLUME = 0.3;
-export const MUSIC_MAX_VOLUME = 0.2;
+// User Preferences config
+export let KEY_BINDINGS = {
+    PAN_UP: 'w',
+    PAN_LEFT: 'a',
+    PAN_DOWN: 's',
+    PAN_RIGHT: 'd',
+    TOOLS_NAVBAR_1: '1',
+    TOOLS_NAVBAR_2: '2',
+    TOOLS_NAVBAR_3: '3',
+    TOOLS_NAVBAR_4: '4',
+    TOOLS_NAVBAR_5: '5',
+    TOOLS_NAVBAR_6: '6',
+    TOOLS_NAVBAR_7: '7',
+    TOOLS_NAVBAR_8: '8',
+};
 
-// Music Region Sound Configs
+const defaultKeyBindings = { ...KEY_BINDINGS };
+
+export let VOLUME = {
+    MUSIC_VOLUME: 0.2,
+    AMBIANCE_VOLUME: 0.3
+};
+
+const defaultVolume = { ...VOLUME };
+
+export const ZOOM_SENSITIVITY = 0.6;
+export const PAN_THRESHOLD = 5;
+export const WHEEL_ZOOM_SPEED = 0.002;
+
+// Music Region Sound configs
 export const CROSSFADE_DURATION = 1500;
 export const OVERLAY_FADE_DURATION = 500;
 
@@ -67,20 +105,33 @@ export const NIGHT = 2;
 export const AMBIANCE_SLIDER_ID = "ambianceSlider";
 export const MUSIC_SLIDER_ID = "musicSlider";
 export const TOGGLE_GRID_BUTTON_ID = "toggle-grid-button";
-export const RESET_ZOOM_BUTTON_ID = "reset-view-button";
+export const RESET_VIEW_BUTTON_ID = "reset-view-button";
 export const WEATHER_BUTTON_ID = "weather-button";
-export const DAY_NIGHT_BUTTON_ID = "day-night-button";
+export const SET_TIME_BUTTON_ID = "set-time-button";
 export const SOUND_PANEL_ID = "soundPanel";
 export const SOUND_PANEL_BUTTON_ID = "sound-panel-button";
-export const HEADER_TEXT_ID = "header-text";
-export const HEADER_OVERLAY_ID = "header-overlay";
 export const OVERLAYS_BUTTON_ID = "overlays-button";
-export const OVERLAYS_PANEL = "overlays-panel";
+export const OVERLAYS_PANEL_ID = "overlays-panel";
+export const DEV_TOOLS_PANEL_ID = "dev-tools-panel";
+export const SETTINGS_BUTTON_ID = "settings-button";
+export const DEV_TOOLS_BUTTON_ID = "dev-tools-button";
+export const HEADER_TEXT_ID = "header-text";
+export const OVERLAY_HEADER_ID = "overlay-header";
 export const LOADING_SCREEN_MAIN_ID = "loading-screen-main";
 export const LOADING_CONTENT_MAIN_ID = "loading-content-main";
 export const LOADING_TIP_TEXT_ID = "loading-tip-text";
 export const LOADING_SCREEN_SECONDARY_ID = "loading-screen-secondary";
 export const LOADING_CONTENT_SECONDARY_ID = "loading-content-secondary";
+
+// DOM Class IDs
+export const PANEL_CHECKMARK_CLASS = "panel-checkmark";
+export const PANEL_LIST_ITEM_CLASS = "panel-list-item";
+export const PANEL_LIST_ITEM_TEXT_CLASS = "panel-list-item-text";
+
+// DOM Class Selectors
+export const PANEL_CHECKMARK_CLASS_SELECTOR = `.${PANEL_CHECKMARK_CLASS}`;
+export const PANEL_LIST_ITEM_CLASS_SELECTOR = `.${PANEL_LIST_ITEM_CLASS}`;
+export const PANEL_LIST_ITEM_TEXT_CLASS_SELECTOR = `.${PANEL_LIST_ITEM_TEXT_CLASS}`;
 
 // Cloud sprite paths
 const CLOUDS_PATH = SPRITE_PATH + "clouds/";
@@ -171,8 +222,41 @@ const configHandlers = [
     }
 ];
 
+async function loadUserPreferences() {
+    try {
+        const response = await fetch('user-prefs.json');
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        const userPrefs = await response.json();
+        if (!userPrefs.KeyBindings) throw new Error('No KeyBindings section');
+
+        // Validate and merge keybindings
+        const userKeyBindings = userPrefs.KeyBindings;
+        for (const [key, value] of Object.entries(userKeyBindings)) {
+            if (KEY_BINDINGS.hasOwnProperty(key) && typeof value === 'string') {
+                KEY_BINDINGS[key] = value.toLowerCase();
+            }
+        }
+
+        // Validate and merge volume
+        const userVolume = userPrefs.Volume;
+        if (!userPrefs.Volume) throw new Error('No Volume section');
+
+        for (const [key, value] of Object.entries(userVolume)) {
+            if (VOLUME.hasOwnProperty(key) && typeof value === 'number') {
+                VOLUME[key] = value;
+            }
+        }
+    } catch (error) {
+        console.warn('Using default settings:', error.message);
+        KEY_BINDINGS = { ...defaultKeyBindings };
+        VOLUME = { ...defaultVolume };
+    }
+}
+
 async function loadConfig() {
     try {
+        // Load main config first
         const response = await fetch('config.json');
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
@@ -188,8 +272,13 @@ async function loadConfig() {
             handler.action(value);
         });
 
+        // Load user preferences after main config
+        await loadUserPreferences();
+
     } catch (error) {
-        console.error('Error loading config.json:', error.message);
+        console.error('Config/Prefs loading error:', error.message);
+        KEY_BINDINGS = { ...defaultKeyBindings };
+        VOLUME = { ...defaultVolume };
     }
 }
 

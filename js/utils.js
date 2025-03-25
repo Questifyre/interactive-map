@@ -25,3 +25,11 @@ export const resetAudioPlayer = (player) => {
     player.pause();
     player.currentTime = 0;
 };
+
+export function getRelativeCoordinates(event, canvas) {
+    const rect = canvas.getBoundingClientRect();
+    return {
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top
+    };
+}

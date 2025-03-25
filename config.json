@@ -7,6 +7,7 @@
         "Enable Sound Panel": true,
         "Enable Weather Toggle": true,
         "Enable Overlays": true,
+        "Enable Settings": false,
         "Welcome Header": "WRITE A HEADER HERE!",
         "Zoom": {
             "Min": 0.8,
@@ -18,7 +19,7 @@
             "Land Routes": true,
             "Sea Routes": true
         },
-        "TEST-TrackMousePosition": false
+        "Developer Mode": true
     },
     "Maps": {
         "Grid": "map_grid.webp",

@@ -1,0 +1,21 @@
+{
+	"Volume":
+	{
+		"MUSIC_VOLUME": 0.2,
+		"AMBIANCE_VOLUME": 0.3
+	},
+	"KeyBindings": {
+		"PAN_UP": "w",
+		"PAN_LEFT": "a",
+		"PAN_DOWN": "s",
+		"PAN_RIGHT": "d",
+		"TOOLS_NAVBAR_1": "1",
+		"TOOLS_NAVBAR_2": "2",
+		"TOOLS_NAVBAR_3": "3",
+		"TOOLS_NAVBAR_4": "4",
+		"TOOLS_NAVBAR_5": "5",
+		"TOOLS_NAVBAR_6": "6",
+		"TOOLS_NAVBAR_7": "7",
+		"TOOLS_NAVBAR_8": "8"
+	}
+}

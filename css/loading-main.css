@@ -46,7 +46,7 @@
 #loading-tip-text {
     font-size: clamp(1.2rem, 1.5vw, 1.8rem);
     font-weight: bold;
-    font-family: 'Modesto';
+    font-family: 'Modesto', sans-serif;
     text-align: center;
     max-width: 50%;
     line-height: 1.4;
@@ -61,7 +61,7 @@
     transform: translateX(-50%);
     text-align: center;
     font-size: 1em;
-    font-family: 'Modesto';
+    font-family: 'Modesto', sans-serif;
     color: rgb(210, 210, 210);
     font-size: clamp(0.88rem, 1.65vw, 1.32rem);
 }

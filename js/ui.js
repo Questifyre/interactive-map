@@ -1,4 +1,12 @@
-import { BUTTON_PATH, MAPS_PATH, MAP_FILES, SOUND_PANEL_ID, TOGGLE_GRID_BUTTON_ID } from './config.js';
+import {
+    BUTTON_PATH,
+    MAPS_PATH,
+    MAP_FILES,
+    PANEL_CHECKMARK_CLASS_SELECTOR,
+    TOGGLE_GRID_BUTTON_ID
+} from './config.js';
+
+import { addSoundPanelListeners, removeSoundPanelListeners, AMBIANCE_VOLUME, MUSIC_VOLUME } from './audio.js';
 import { loadWithScreen } from './loading.js';
 
 // ==============================
@@ -14,14 +22,14 @@ const updateGridButtonVisual = function () {
     }
 }
 
-export async function handleGridToggle(wallpaper, drawWallpaperCallback) {
+export async function handleGridToggle(wallpaper, drawMapCallback) {
     gridActive = !gridActive;
     updateGridButtonVisual();
 
     // Async loading with threshold
     await loadWithScreen(async () => {
         await swapWallpaperImage(wallpaper);
-        await drawWallpaperCallback();
+        await drawMapCallback();
     });
 }
 
@@ -37,9 +45,31 @@ async function swapWallpaperImage(imgElement) {
 }
 
 export function handleSoundPanelToggle() {
-    const panel = document.getElementById(SOUND_PANEL_ID);
-    if (panel) {
-        panel.style.display = (panel.style.display === "none" || panel.style.display === "") ? "block" : "none";
+    let panel = document.getElementById("soundPanel");
+
+    // If the panel doesn't exist, create it dynamically
+    if (!panel) {
+        panel = document.createElement("div");
+        panel.id = "soundPanel";
+        panel.className = "sound-panel";
+        panel.innerHTML = `
+            <div class="sound-widget" id="musicWidget">
+                <img src="assets/tool/images/icons/buttons/music_slider.png" alt="Music">
+                <input type="range" id="musicSlider" min="0" max="1" step="0.01" value="${MUSIC_VOLUME}">
+            </div>
+            <div class="sound-widget" id="ambianceWidget">
+                <img src="assets/tool/images/icons/buttons/ambiance_slider.png" alt="Ambiance">
+                <input type="range" id="ambianceSlider" min="0" max="1" step="0.01" value="${AMBIANCE_VOLUME}">
+            </div>
+        `;
+        document.body.appendChild(panel);
+        // Set to visible initially after creation
+        panel.style.display = "block";
+        addSoundPanelListeners();
+    } else {
+        //Remove panel for optimization
+        panel.remove();
+        removeSoundPanelListeners();
     }
 }
 
@@ -110,22 +140,6 @@ export function disableButton(buttonID) {
     }
 }
 
-export function enableButton(buttonID) {
-    const button = document.getElementById(buttonID);
-    if (button) {
-        button.disabled = false;
-        button.style.cursor = 'pointer';
-
-        const img = button.querySelector('img');
-        if (img) {
-            img.style.filter = '';
-            img.style.opacity = '1';
-        }
-    } else {
-        console.error(`Button with ID "${buttonID}" not found.`);
-    }
-}
-
 export function disableOverlay(overlayID) {
     const listItem = document.getElementById(overlayID);
     if (listItem) {
@@ -153,5 +167,16 @@ export function enableOverlay(overlayID) {
         }
     } else {
         console.error(`Overlay list item with ID "${overlayID}" not found.`);
+    }
+}
+
+export function updatePanelCheckmarkVisual(rootElement, elementClass, condition) {
+    const elementList = rootElement.querySelectorAll(elementClass);
+    const item = Array.from(elementList).find(condition);
+    if (item) {
+        const button = item.querySelector(PANEL_CHECKMARK_CLASS_SELECTOR);
+        if (button) {
+            button.classList.toggle('checked');
+        }
     }
 }

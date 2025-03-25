@@ -1,4 +1,5 @@
 .sound-panel {
+    z-index: 101;
     position: fixed;
     bottom: 80px;
     left: 50%;

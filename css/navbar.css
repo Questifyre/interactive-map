@@ -1,4 +1,5 @@
 .bottom-nav-bar {
+    z-index: 100;
     position: fixed;
     bottom: 10px;
     left: 50%;
@@ -12,23 +13,6 @@
     -webkit-backdrop-filter: blur(2px);
     box-sizing: border-box;
     max-width: 100%;
-}
-
-.panel-header {
-    position: fixed;
-    bottom: 100%;
-    left: 0;
-    z-index: 100;
-    padding: 5px 20px;
-    background-color: rgb(26, 26, 26);
-    border-radius: 10px 10px 0 0;
-    color: white;
-    font-family: 'Modesto';
-    font-weight: bold;
-    font-size: 1.2em;
-    text-align: left;
-    white-space: nowrap;
-    pointer-events: none;
 }
 
 .nav-bar-button {
@@ -54,20 +38,10 @@
     transition: transform 0.2s ease;
 }
 
-.nav-bar-button:focus {
-    outline: 2px solid rgb(175, 175, 175);
-    outline-offset: 2px;
-}
-
 @media (orientation: portrait) {
     .bottom-nav-bar {
         padding: 19px 31px;
         gap: 2.34rem;
-    }
-
-    .panel-header {
-        padding: 8px 31px;
-        font-size: 1.87em;
     }
 
     .nav-bar-button {

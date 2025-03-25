@@ -4,5 +4,7 @@
 @import url('header.css');
 @import url('navbar.css');
 @import url('sound.css');
-@import url('overlays-panel.css');
+@import url('panel.css');
 @import url('tooltips.css');
+@import url('prompts.css');
+@import url('popups.css');

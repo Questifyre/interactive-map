@@ -1,4 +1,5 @@
-#header-overlay {
+#overlay-header {
+    z-index: 300;
     position: fixed;
     top: 20px;
     width: 100%;
@@ -7,13 +8,13 @@
     transition: opacity 0.5s ease;
 }
 
-#header-overlay h1 {
-    font-family: 'Modesto';
+#overlay-header h1 {
+    font-family: 'Modesto', sans-serif;
     font-size: 3em;
     color: rgb(255, 255, 255);
 }
 
-#header-overlay h1 span {
+#overlay-header h1 span {
     color: white;
     text-shadow:
         -1px -1px 0 black,

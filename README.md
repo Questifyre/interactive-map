@@ -128,6 +128,6 @@ Enable `"TEST-TrackMousePosition": true` to log mouse coordinates in the browser
 ---
 
 ## Support & Future Plans  
-Love this project? Support its development on [Ko-fi](https://ko-fi.com/questifyer)! With enough support, I’ll build a **free platform** for creating, editing, and hosting interactive maps - no coding required!  
+Love this project? Support its development on [Ko-fi](https://ko-fi.com/questifyre)! With enough support, I’ll build a **free platform** for creating, editing, and hosting interactive maps - no coding required!  
 
 Crafted with 🔥 by ***Bryan Gomes Saraiva*** | [Report Issues](https://github.com/your-repo/issues)

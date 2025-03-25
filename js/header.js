@@ -1,4 +1,12 @@
-import { CONFIG_SETTINGS, CHARACTER_SPACING, CHARACTER_FADE_DURATION, HEADER_TEXT_ID, HEADER_STAY_DURATION, TYPING_SPEED } from './config.js';
+import {
+    CONFIG_SETTINGS,
+    CHARACTER_SPACING,
+    CHARACTER_FADE_DURATION,
+    OVERLAY_HEADER_ID,
+    HEADER_TEXT_ID,
+    HEADER_STAY_DURATION,
+    TYPING_SPEED
+} from './config.js';
 
 // ==============================
 // Intro Header Configurations
@@ -19,7 +27,10 @@ const fadeOutHeader = () => {
             headerElement.style.opacity = opacity;
             requestAnimationFrame(step);
         } else {
-            headerElement.style.opacity = 0;
+            const headerOverlay = document.getElementById(OVERLAY_HEADER_ID);
+            if (headerOverlay) {
+                headerOverlay.remove();
+            }
         }
     };
     requestAnimationFrame(step);

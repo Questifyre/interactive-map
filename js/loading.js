@@ -1,12 +1,11 @@
 import { LOADING_SCREEN_MAIN_ID, LOADING_CONTENT_MAIN_ID, LOADING_TIP_TEXT_ID, LOADING_SCREEN_SECONDARY_ID, LOADING_CONTENT_SECONDARY_ID } from './config.js';
-import { animationLoop } from './canvas.js';
-import { startHeaderAnimation } from './header.js';
-import { startInteractiveMap } from './main.js';
+import { animationLoop } from './canvas/canvas.js';
+import { startApplication } from './main.js';
 
 // ==============================
 // Main Loading Screen Handling
 // ==============================
-export function setupMainLoadingScreen(wallpaper, drawWallpaperCallback) {
+export function setupMainLoadingScreen(wallpaper, drawMapCallback) {
     const loadingScreen = document.getElementById(LOADING_SCREEN_MAIN_ID);
     const loadingContent = document.getElementById(LOADING_CONTENT_MAIN_ID);
     const loadingTipText = document.getElementById(LOADING_TIP_TEXT_ID);
@@ -14,14 +13,14 @@ export function setupMainLoadingScreen(wallpaper, drawWallpaperCallback) {
     const loadingMessages = [
         "Consulting the ancient scrolls",
         "Sharpening our quills for mapping",
-        "The cartographer's guild is hard at work",
+        "The cartographer is hard at work",
         "Unfurling the parchment of your realm",
-        "Gathering the pixels for your grand design",
+        "Gathering the pixels for your design",
         "Summoning the digital ink",
-        "The forge of creation is heating up",
+        "The forge is heating up",
         "Mages are weaving the visual tapestry",
-        "Goblins are diligently placing every pixel",
-        "Even beholders are lending their eyes",
+        "Goblins are placing every pixel",
+        "Beholders are lending their eyes",
         "Rolling initiative for map generation",
         "Venturing into the digital wilderness",
         "Mapping the uncharted territories",
@@ -34,9 +33,9 @@ export function setupMainLoadingScreen(wallpaper, drawWallpaperCallback) {
         "The compass is spinning, almost there",
         "Brewing a potion of map completion",
         "Chanting the spell of visualization",
-        "The dice have been cast, loading results",
+        "The dice have been cast",
         "Embarking on the loading quest",
-        "Your personalized map is materializing",
+        "Your map is materializing",
     ];
 
     let imageLoaded = false;
@@ -52,11 +51,9 @@ export function setupMainLoadingScreen(wallpaper, drawWallpaperCallback) {
 
                 if (opacity <= -0) {
                     clearInterval(fadeInterval);
-                    loadingScreen.style.display = 'none';
-                    loadingContent.style.display = 'none';
-                    startInteractiveMap();
+                    startApplication();
                     requestAnimationFrame(animationLoop);
-                    setTimeout(startHeaderAnimation, 400);
+                    loadingScreen.remove();
                 }
             }, 20);
         }
@@ -83,7 +80,7 @@ export function setupMainLoadingScreen(wallpaper, drawWallpaperCallback) {
 
     wallpaper.onload = () => {
         imageLoaded = true;
-        drawWallpaperCallback();
+        drawMapCallback();
         hideLoadingScreen();
     };
 

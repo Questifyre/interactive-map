@@ -21,8 +21,31 @@ body {
     overflow: hidden;
 }
 
-#questifyre-interactive-map {
+.canvas-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#canvas-background {
+    z-index: 0;
+    pointer-events: none;
+}
+
+#canvas-map {
+    z-index: 1;
     display: block;
     cursor: grab;
     touch-action: none;
+}
+
+#canvas-overlays {
+    z-index: 2;
+    display: block;
+    cursor: grab;
+    touch-action: none;
+    pointer-events: none
 }

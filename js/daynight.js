@@ -1,4 +1,4 @@
-import { BUTTON_PATH, DAY, DAY_NIGHT_BUTTON_ID, OVERLAY_PROPERTIES, OVERLAY_FADE_DURATION } from './config.js';
+import { BUTTON_PATH, DAY, SET_TIME_BUTTON_ID, OVERLAY_PROPERTIES, OVERLAY_FADE_DURATION } from './config.js';
 import { hexToRgb, interpolateColor } from './utils.js';
 
 // ==============================
@@ -50,7 +50,7 @@ export function handleDayNightToggle() {
     dayNightState = newState;
     fadeStartTime = performance.now();
 
-    const dayNightButton = document.getElementById(DAY_NIGHT_BUTTON_ID);
+    const dayNightButton = document.getElementById(SET_TIME_BUTTON_ID);
     if (dayNightButton) {
         const img = dayNightButton.querySelector("img");
         if (img) {
