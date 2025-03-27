@@ -2,6 +2,57 @@
 
 All notable changes to this project will be documented in this file.
 
+## Alpha v0.7.0-DN1 - 26-03-2025
+
+### Configuration & Code Consistency
+- Swapped several settings in `config.json` around for a more consistent scheme.
+- Added new settings in `config.json` to allow setting the map scale for the measurement tool.
+- Added a new toggle flag in `config.json` for the **Tools** button.
+- Swapped several variables in imports and similar code areas for a more consistent codebase.
+- Refactored all possible functions throughout the project with `const`.
+
+### UI/UX & Navigation Enhancements
+- The buttons under the Bottom Nav Bar are now dynamically inserted using JS (`navbar-buttons.js`) instead of being prebaked in HTML.
+- Disabled buttons are no longer rendered at all (instead of being greyed out), keeping the UI uncluttered.
+- Action Shortcuts are now dynamically defined by their hierarchy within elements.
+- Refactored the **Tools** navbar (bottom navbar) to **Menu**.
+- Shifted the **Developer Mode** button's icon to the **Tools** button, which now features a new icon.
+
+### Feature Updates & New Tools
+- Introduced a new **Tools** button that toggles a panel of useful interactive tools for the user.
+- Added a "Distance Measurement" tool that allows users to measure the distance between locations using configured scales.
+
+### General Cleanup & Performance
+- Performed extensive general code cleanup, organization, and performance optimizations across all fronts.
+- Added a very subtle sound effect for regular clicks on UI elements to improve feedback.
+- Updated overlays to render over weather and day time effects.
+
+### Code Refactoring & File Renaming
+- Refactored `handleDayNightToggle()` to `handleDayTimeToggle()`.
+- Refactored `dayNightButton` to `dayTimeButton`.
+- Removed "Prototype" from the version note as the application is now considered ready for deployment.
+- Refactored the following files:
+  - `weather.js` → `weather-manager.js`
+  - `ui.js` → `ui-manager.js`
+  - `navbar-buttons.js.js` → `bottom-navbar-button-manager.js.js`
+  - `map-tooltips.js.js` → `map-tooltips-manager.js`
+  - `loading.js` → `loading-screen-manager.js`
+  - `header.js` → `header-animation.js`
+  - `daynight.js` → `time-of-day-manager.js`
+  - `config.js` → `config-manager.js`
+  - `classes.js` → `weather-classes.js`
+  - `audio.js` → `sound-system.js`
+  - `actions.js` → `ui-actions.js`
+  - `overlay-tooltips.js` → `map-tooltip-overlay.js`
+  - `mouse-tracking.js` → `mouse-tracking-tool.js`
+  - `define-map-area.js.js` → `map-area-tool.js.js`
+  - `dev-tools.js` → `dev-tools-manager.js`
+  - `canvas-touch-interactions.js` → `canvas-gesture-handler.js`
+  - `canvas-mouse-interactions.js` → `canvas-mouse-handler.js`
+  - `canvas-keyboard-interactions.js` → `canvas-keyboard-handler.js`
+  - `canvas-interactions.js` → `canvas-input-manager.js`
+  - `popups.js` → `popup-controller.js`
+
 ## Alpha v0.6.0-CN1 - 25-03-2025
 
 This release is a nearly complete rework of the application’s front end while preserving the underlying foundations. It introduces new features for developer productivity and user interactivity, reorganizes code for improved maintainability, and implements several performance and UI enhancements.

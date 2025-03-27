@@ -24,7 +24,7 @@
         <div id="loading-content-main">
             <img src="assets/tool/images/icons/loading_logo.png" alt="Loading Logo" id="loading-logo">
             <div id="loading-tip-text">‎ </div>
-            <div id="loading-version-text">Questifyre Alpha v0.6.0-CN1 Prototype</div>
+            <div id="loading-version-text">Questifyre Alpha v0.7.0-DN1</div>
             <div id="loading-circle-container-main">
                 <div class="loading-circle-main"></div>
             </div>
@@ -63,45 +63,15 @@
         </div>
     </div>
 
-    <div class="bottom-nav-bar">
-        <div class="panel-header">Tools</div>
-        <button class="nav-bar-button" id="toggle-grid-button"
-            data-tooltip="Toggle the *Hex Grid* between *On* / *Off*. (Shortcut: *1*)">
-            <img src="assets/tool/images/icons/buttons/grid_0.png" alt="Toggle Grid">
-        </button>
-        <button class="nav-bar-button" id="reset-view-button"
-            data-tooltip="Reset *Pan* and *Zoom* to *Default*. (Shortcut: *2*)">
-            <img src="assets/tool/images/icons/buttons/reset_view.png" alt="Reset Zoom">
-        </button>
-        <button class="nav-bar-button" id="set-time-button"
-            data-tooltip="Toggle the *Day Time* between *Day*, *Dusk* or *Night*. (Shortcut: *3*)">
-            <img src="assets/tool/images/icons/buttons/day_night_0.png" alt="Day/Night">
-        </button>
-        <button class="nav-bar-button" id="sound-panel-button" data-tooltip="Configure *Audio Volume*. (Shortcut: *4*)">
-            <img src="assets/tool/images/icons/buttons/sound_panel.png" alt="Sound Player">
-        </button>
-        <button class="nav-bar-button" id="weather-button"
-            data-tooltip="Toggle the *Weather* between *Clear*, *Overcast*, *Rain* and *Storm*. (Shortcut: *5*)">
-            <img src="assets/tool/images/icons/buttons/weather_0.png" id="Weather">
-        </button>
-        <button class="nav-bar-button" id="overlays-button"
-            data-tooltip="Enable various *Overlays*, to identify specific parts of the *World*. (Shortcut: *6*)">
-            <img src="assets/tool/images/icons/buttons/overlays.png" id="Overlays">
-        </button>
-        <button class="nav-bar-button" id="settings-button" data-tooltip="Configure *Map Settings*. (Shortcut: *7*)">
-            <img src="assets/tool/images/icons/buttons/settings.png" id="Overlays">
-        </button>
-        <button class="nav-bar-button" id="dev-tools-button"
-            data-tooltip="Enable various *Developer Tools* for *Setting Up* the *Map*. (Shortcut: *8*)">
-            <img src="assets/tool/images/icons/buttons/developer_tools.png" id="Overlays">
-        </button>
+    <div class="bottom-nav-bar" id="bottom-nav-bar">
+        <div class="panel-header" id="bottom-nav-bar-header">Menu</div>
     </div>
 
     <canvas id="canvas-background" class="canvas-layer"></canvas>
     <canvas id="canvas-map" class="canvas-layer" tabindex="0"></canvas>
     <canvas id="canvas-overlays" class="canvas-layer"></canvas>
 
-    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/core/main.js"></script>
 </body>
 
 </html>

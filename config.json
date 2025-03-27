@@ -1,14 +1,16 @@
 {
     "Settings": {
         "Page Title": "Sample Map",
+        "Welcome Header": "WRITE A HEADER HERE!",
         "Enable Grid Toggle": true,
         "Enable Reset View": true,
         "Enable Day Time Toggle": true,
         "Enable Sound Panel": true,
         "Enable Weather Toggle": true,
         "Enable Overlays": true,
+        "Enable User Tools": true,
         "Enable Settings": false,
-        "Welcome Header": "WRITE A HEADER HERE!",
+        "Developer Mode": true,
         "Zoom": {
             "Min": 0.8,
             "Max": 5
@@ -19,7 +21,10 @@
             "Land Routes": true,
             "Sea Routes": true
         },
-        "Developer Mode": true
+        "Map Scale": {
+            "Distance Per Map Pixel": 0.342,
+            "Distance Unit": "Miles"
+        }
     },
     "Maps": {
         "Grid": "map_grid.webp",
