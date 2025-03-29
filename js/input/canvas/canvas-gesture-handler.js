@@ -1,17 +1,17 @@
 import {
-    MAX_ZOOM_SCALE,
-    MIN_ZOOM_SCALE,
-    PAN_THRESHOLD,
-    ZOOM_SENSITIVITY,
+  MAX_ZOOM_SCALE,
+  MIN_ZOOM_SCALE,
+  PAN_THRESHOLD,
+  ZOOM_SENSITIVITY,
 } from "../../config/config-manager.js";
 
 import {
-    CURSOR_GRAB,
-    CURSOR_GRABBING,
-    tryUpdateRegionSound,
+  CURSOR_GRAB,
+  CURSOR_GRABBING,
+  tryUpdateRegionSound,
 } from "./canvas-input-manager.js";
 
-import { CANVAS_TRANSFORM, drawMap } from "../../rendering/canvas-manager.js";
+import { CANVAS_TRANSFORM, drawMap, setDrawStatuses } from "../../rendering/canvas-manager.js";
 
 // ==============================
 // Event Handling Updates - Mobile
@@ -24,6 +24,7 @@ export const setupTouchSystem = (canvas) => {
   let initialDistance;
 
   const updateCanvas = () => {
+    setDrawStatuses([0, 1, 2, 3], true);
     drawMap();
     tryUpdateRegionSound();
   };

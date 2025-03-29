@@ -1,25 +1,27 @@
 import { KEY_BINDINGS, PAN_THRESHOLD } from "../../config/config-manager.js";
-import { CANVAS_TRANSFORM, drawMap } from "../../rendering/canvas-manager.js";
+import { CANVAS_TRANSFORM, drawMap, setDrawStatuses } from "../../rendering/canvas-manager.js";
 
+let keyBindings = KEY_BINDINGS;
 let activeKeys = new Set();
 let panInterval = null;
 
 const handleKeyPan = function () {
   const speed = PAN_THRESHOLD * CANVAS_TRANSFORM.scale;
 
-  if (activeKeys.has(KEY_BINDINGS.PAN_UP)) {
+  if (activeKeys.has(keyBindings.PAN_UP)) {
     CANVAS_TRANSFORM.offsetY += speed;
   }
-  if (activeKeys.has(KEY_BINDINGS.PAN_DOWN)) {
+  if (activeKeys.has(keyBindings.PAN_DOWN)) {
     CANVAS_TRANSFORM.offsetY -= speed;
   }
-  if (activeKeys.has(KEY_BINDINGS.PAN_LEFT)) {
+  if (activeKeys.has(keyBindings.PAN_LEFT)) {
     CANVAS_TRANSFORM.offsetX += speed;
   }
-  if (activeKeys.has(KEY_BINDINGS.PAN_RIGHT)) {
+  if (activeKeys.has(keyBindings.PAN_RIGHT)) {
     CANVAS_TRANSFORM.offsetX -= speed;
   }
 
+  setDrawStatuses([0, 1, 2, 3], true);
   drawMap();
 }
 
@@ -37,8 +39,7 @@ export const setupKeyboardSystem = () => {
     if (isEditingText()) return;
 
     const key = e.key.toLowerCase();
-    if (Object.values(KEY_BINDINGS).includes(key)) {
-      e.preventDefault();
+    if (Object.values(keyBindings).includes(key)) {
       if (!activeKeys.has(key)) {
         activeKeys.add(key);
         if (!panInterval) {
@@ -61,3 +62,7 @@ export const setupKeyboardSystem = () => {
     }
   });
 };
+
+window.addEventListener('keybindingsUpdated', (event) => {
+  keyBindings = event.detail.newBindings;
+});

@@ -9,7 +9,7 @@
         "Enable Weather Toggle": true,
         "Enable Overlays": true,
         "Enable User Tools": true,
-        "Enable Settings": false,
+        "Enable Settings": true,
         "Developer Mode": true,
         "Zoom": {
             "Min": 0.8,

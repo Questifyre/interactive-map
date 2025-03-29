@@ -30,14 +30,6 @@ export const createBottomNavBarButtons = function (settings) {
             }
         },
         {
-            name: 'Enable Sound Panel',
-            id: 'sound-panel-button',
-            tooltip: 'Configure *Audio Volume*.',
-            img: {
-                src: 'assets/tool/images/icons/buttons/sound_panel.png',
-            }
-        },
-        {
             name: 'Enable Weather Toggle',
             id: 'weather-button',
             tooltip: 'Toggle the *Weather* between *Clear*, *Overcast*, *Rain* and *Storm*.',
@@ -64,7 +56,7 @@ export const createBottomNavBarButtons = function (settings) {
         {
             name: 'Enable Settings',
             id: 'settings-button',
-            tooltip: 'Configure *Map Settings*.',
+            tooltip: 'Configure *User Settings*.',
             img: {
                 src: 'assets/tool/images/icons/buttons/settings.png',
             }

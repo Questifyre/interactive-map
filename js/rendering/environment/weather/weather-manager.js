@@ -89,10 +89,9 @@ const drawWeatherFilter = function (ctx) {
     ctx.globalAlpha = 1;
 }
 
-window.addEventListener('overlaysUpdated', (event) => {
-    const { ctxOverlays } = event.detail;
-    drawWeatherEffects(ctxOverlays);
-    drawWeatherFilter(ctxOverlays);
+window.addEventListener('weatherUpdated', (event) => {
+    drawWeatherEffects(event.detail.ctx);
+    drawWeatherFilter(event.detail.ctx);
 });
 
 export const clouds = [];

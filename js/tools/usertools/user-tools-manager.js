@@ -17,6 +17,7 @@ export let userToolStates = [
 		name: "Measure Distance",
 		state: false,
 		allowed: true,
+		UIStyle: 'Toggle'
 	},
 ];
 

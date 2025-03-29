@@ -136,19 +136,32 @@ export const addSoundPanelListeners = function () {
     const ambianceSlider = document.getElementById(AMBIANCE_SLIDER_ID);
     const musicSlider = document.getElementById(MUSIC_SLIDER_ID);
 
+    const saveVolumeCookie = () => {
+        const volumeData = {
+            AMBIANCE_VOLUME: AMBIANCE_VOLUME,
+            MUSIC_VOLUME: MUSIC_VOLUME
+        };
+        const cookieValue = encodeURIComponent(JSON.stringify(volumeData));
+        const expires = new Date();
+        expires.setFullYear(expires.getFullYear() + 1);
+        document.cookie = `volume=${cookieValue}; expires=${expires.toUTCString()}; path=/`;
+    };
+
     ambianceSliderHandler = e => {
         AMBIANCE_VOLUME = parseFloat(e.target.value);
         ambianceAudio.volume = AMBIANCE_VOLUME;
+        saveVolumeCookie();
     };
 
     musicSliderHandler = e => {
         MUSIC_VOLUME = parseFloat(e.target.value);
         musicAudio.volume = MUSIC_VOLUME;
+        saveVolumeCookie();
     };
 
     ambianceSlider.addEventListener("input", ambianceSliderHandler);
     musicSlider.addEventListener("input", musicSliderHandler);
-}
+};
 
 // Remove on demand
 export const removeSoundPanelListeners = function () {

@@ -1,7 +1,10 @@
 import {
   CANVAS_BACKGROUND,
+  CANVAS_DYNAMIC_OVERLAYS,
   CANVAS_MAP,
-  CANVAS_OVERLAYS,
+  CANVAS_STATIC_OVERLAYS,
+  CANVAS_TIME,
+  CANVAS_WEATHER,
   IMAGES_PATH,
 } from "../config/config-manager.js";
 
@@ -11,18 +14,21 @@ import {
   updateWeatherOverlay
 } from "./environment/weather/weather-manager.js";
 
-import { updateDayNightCycle } from "./time-of-day-manager.js";
+import { updateDayTimeCycle } from "./time-of-day-manager.js";
 
 // ==============================
 // Canvas Contexts Initialization
 // ==============================
 const ctxBg = CANVAS_BACKGROUND.getContext("2d");
 const ctxMap = CANVAS_MAP.getContext("2d");
-const ctxOverlays = CANVAS_OVERLAYS.getContext("2d");
+const ctxWeather = CANVAS_WEATHER.getContext("2d");
+const ctxTime = CANVAS_TIME.getContext("2d");
+export const ctxStaticOverlays = CANVAS_STATIC_OVERLAYS.getContext("2d");
+const ctxDynamicOverlays = CANVAS_DYNAMIC_OVERLAYS.getContext("2d");
 
 // Set canvas native resolution to match screen size
 const initCanvasResolutions = function () {
-  [CANVAS_BACKGROUND, CANVAS_MAP, CANVAS_OVERLAYS].forEach((canvas) => {
+  [CANVAS_BACKGROUND, CANVAS_MAP, CANVAS_WEATHER, CANVAS_TIME, CANVAS_STATIC_OVERLAYS, CANVAS_DYNAMIC_OVERLAYS].forEach((canvas) => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   });
@@ -58,17 +64,38 @@ export const CANVAS_TRANSFORM = {
 export let currentWallpaperMatrix = new DOMMatrix();
 
 // ==============================
+// Events
+// ==============================
+
+const weatherUpdatedEvent = new CustomEvent('weatherUpdated', {
+  detail: { ctx: ctxWeather }
+});
+
+const timeUpdatedEvent = new CustomEvent('timeUpdated', {
+  detail: { ctx: ctxTime }
+});
+
+const staticOverlaysUpdatedEvent = new CustomEvent('staticOverlaysUpdatedEvent', {
+  detail: { ctx: ctxStaticOverlays }
+});
+
+const dynamicOverlaysUpdatedEvent = new CustomEvent('dynamicOverlaysUpdated', {
+  detail: { ctx: ctxDynamicOverlays }
+});
+
+// ==============================
 // Map & Overlay Drawing
 // ==============================
 
-const overlaysUpdatedEvent = new CustomEvent('overlaysUpdated', {
-  detail: { ctxOverlays }
-});
+export const drawStatuses = {
+  map: { id: 0, mustRedraw: true },
+  time: { id: 1, mustRedraw: false },
+  staticOverlays: { id: 2, mustRedraw: false },
+  dynamicOverlays: { id: 3, mustRedraw: false },
+  weather: { id: 4, canRedraw: true },
+}
 
 export const drawMap = function () {
-  // Clear previous frame
-  ctxMap.clearRect(0, 0, CANVAS_MAP.width, CANVAS_MAP.height);
-  ctxOverlays.clearRect(0, 0, CANVAS_OVERLAYS.width, CANVAS_OVERLAYS.height);
 
   if (MAP.complete && MAP.naturalWidth && MAP.naturalHeight) {
     const imgWidth = MAP.naturalWidth;
@@ -96,10 +123,14 @@ export const drawMap = function () {
     currentWallpaperMatrix = combinedMatrix;
 
     // Draw map
-    ctxMap.save();
-    ctxMap.setTransform(combinedMatrix);
-    ctxMap.drawImage(MAP, 0, 0, imgWidth, imgHeight);
-    ctxMap.restore();
+    if (drawStatuses.map.mustRedraw) {
+      ctxMap.clearRect(0, 0, CANVAS_MAP.width, CANVAS_MAP.height);
+      ctxMap.save();
+      ctxMap.setTransform(combinedMatrix);
+      ctxMap.drawImage(MAP, 0, 0, imgWidth, imgHeight);
+      ctxMap.restore();
+      drawStatuses.map.mustRedraw = false;
+    }
 
     // Create a remapping matrix to convert window coordinates to wallpaper natural coordinates.
     // This matrix maps (0,0) to (0,0) and (window.innerWidth, window.innerHeight) to (imgWidth, imgHeight).
@@ -108,12 +139,47 @@ export const drawMap = function () {
       imgHeight / window.innerHeight
     );
 
-    // Draw overlays (shared transformation)
-    const overlayMatrix = combinedMatrix.multiply(remapMatrix);
-    ctxOverlays.save();
-    ctxOverlays.setTransform(overlayMatrix);
-    window.dispatchEvent(overlaysUpdatedEvent);
-    ctxOverlays.restore();
+    // Draw other canvases (shared transformation)
+    const multipliedMatrix = combinedMatrix.multiply(remapMatrix);
+
+    // Weather
+    if (drawStatuses.weather.canRedraw) {
+      ctxWeather.clearRect(0, 0, CANVAS_WEATHER.width, CANVAS_WEATHER.height);
+      ctxWeather.save();
+      ctxWeather.setTransform(multipliedMatrix);
+      window.dispatchEvent(weatherUpdatedEvent);
+      ctxWeather.restore();
+    }
+
+    // Time
+    if (drawStatuses.time.mustRedraw) {
+      ctxTime.clearRect(0, 0, CANVAS_TIME.width, CANVAS_TIME.height);
+      ctxTime.save();
+      ctxTime.setTransform(multipliedMatrix);
+      window.dispatchEvent(timeUpdatedEvent);
+      ctxTime.restore();
+      drawStatuses.time.mustRedraw = false;
+    }
+
+    // Static Overlays
+    if (drawStatuses.staticOverlays.mustRedraw) {
+      ctxStaticOverlays.clearRect(0, 0, CANVAS_STATIC_OVERLAYS.width, CANVAS_STATIC_OVERLAYS.height);
+      ctxStaticOverlays.save();
+      ctxStaticOverlays.setTransform(multipliedMatrix);
+      window.dispatchEvent(staticOverlaysUpdatedEvent);
+      ctxStaticOverlays.restore();
+      drawStatuses.staticOverlays.mustRedraw = false;
+    }
+
+    // Dynamic Overlays
+    if (drawStatuses.dynamicOverlays.mustRedraw) {
+      ctxDynamicOverlays.clearRect(0, 0, CANVAS_DYNAMIC_OVERLAYS.width, CANVAS_DYNAMIC_OVERLAYS.height);
+      ctxDynamicOverlays.save();
+      ctxDynamicOverlays.setTransform(multipliedMatrix);
+      window.dispatchEvent(dynamicOverlaysUpdatedEvent);
+      ctxDynamicOverlays.restore();
+      drawStatuses.dynamicOverlays.mustRedraw = false;
+    }
   }
 }
 
@@ -126,7 +192,7 @@ export const animationLoop = (timestamp) => {
   const dt = (timestamp - lastFrameTime) / 1000;
   lastFrameTime = timestamp;
 
-  updateDayNightCycle(timestamp);
+  updateDayTimeCycle(timestamp);
   updateWeatherOverlay(timestamp);
 
   drawMap();
@@ -140,17 +206,30 @@ export const getMap = function () {
   return MAP;
 }
 
+export const setDrawStatuses = async (indexArray, newState) => {
+  for (const index of indexArray) {
+    const canvasValues = Object.values(drawStatuses);
+    for (let i = 0; i < canvasValues.length; i++) {
+      const canvas = canvasValues[i];
+      if (canvas.id == index && canvas.mustRedraw != newState) {
+        canvas.mustRedraw = newState;
+      }
+    }
+  }
+
+  drawMap();
+};
+
 export const resetView = function () {
   CANVAS_TRANSFORM.scale = 1;
   CANVAS_TRANSFORM.offsetX = 0;
   CANVAS_TRANSFORM.offsetY = 0;
+  setDrawStatuses([0, 1, 2, 3], true);
   drawMap();
 }
 
 // Function to be passed as a callback for redrawing
 export const redrawCanvas = async () => {
-  ctxMap.clearRect(0, 0, CANVAS_MAP.width, CANVAS_MAP.height);
-  ctxOverlays.clearRect(0, 0, CANVAS_OVERLAYS.width, CANVAS_OVERLAYS.height);
   drawMap();
 };
 
@@ -159,5 +238,6 @@ window.addEventListener("resize", () => {
   initCanvasResolutions();
   resetView();
   ctxBg.drawImage(background, 0, 0);
+  setDrawStatuses([0, 1, 2, 3], true);
   drawMap();
 });

@@ -1,6 +1,9 @@
 .panel {
     z-index: 110;
     position: fixed;
+    width: max-content;
+    height: max-content;
+    overflow: visible;
     top: 50vh;
     left: 10px;
     display: none;
@@ -96,6 +99,28 @@
     opacity: 1;
 }
 
+.panel-list-item-key {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 80%;
+    min-width: 24px;
+    padding: 0 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #555;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    color: white;
+    font-family: 'Modesto', sans-serif;
+    font-weight: bold;
+    font-size: 1em;
+    user-select: none;
+}
+
 @media (orientation: portrait) {
     .panel {
         left: 18px;
@@ -127,5 +152,14 @@
 
     .panel-checkmark::after {
         border-width: 0 0 5.2px 5.2px;
+    }
+
+    .panel-list-item-key {
+        right: 9px;
+        min-width: 36px;
+        padding: 0 9px;
+        font-size: 1.82em;
+        border-radius: 5px;
+        box-shadow: 1.82px 1.82px 5.2px rgba(0, 0, 0, 0.5);
     }
 }

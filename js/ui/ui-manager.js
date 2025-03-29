@@ -12,6 +12,7 @@ import {
 } from '../config/config-manager.js';
 
 import { AMBIANCE_VOLUME, MUSIC_VOLUME, addSoundPanelListeners, createAndPlayAudio, removeSoundPanelListeners } from '../audio/sound-system.js';
+import { drawStatuses } from '../rendering/canvas-manager.js';
 import { loadWithScreen } from './components/loading-screen-manager.js';
 
 // ==============================
@@ -34,6 +35,7 @@ export const handleGridToggle = async function (wallpaper, drawMapCallback) {
     await loadWithScreen(async () => {
         await swapWallpaperImage(wallpaper);
         await drawMapCallback();
+        drawStatuses.map.mustRedraw = true;
     });
 }
 
@@ -180,12 +182,21 @@ export const setPanelItemFeedback = function (panelID, elementName, audioPath, v
     createAndPlayAudio(audioPath, volume, randomPitch);
 }
 
-export const createPanel = function (panelID, panelHeader, itemList, clickCallback) {
+export const createPanel = function (panelID, panelHeader, itemList, clickCallback, styleOverrides) {
     // Panel
     const panel = document.createElement("div");
     panel.id = panelID;
     panel.className = "panel";
     panel.style.display = "flex";
+
+    // Apply overrides if they exist
+    if (styleOverrides && typeof styleOverrides === 'object') {
+        for (const property in styleOverrides) {
+            if (styleOverrides.hasOwnProperty(property)) {
+                panel.style[property] = styleOverrides[property];
+            }
+        }
+    }
 
     // Header
     const header = document.createElement("div");
@@ -201,16 +212,31 @@ export const createPanel = function (panelID, panelHeader, itemList, clickCallba
         newItem.className = PANEL_LIST_ITEM_CLASS;
         newItem.style.backgroundColor = `rgba(0, 0, 0, ${index % 2 === 0 ? 0.4 : 0.2})`;
 
+        // Apply Custom List Item Action based on Type
+        if (item.UIStyle == 'Key') {
+            newItem.dataset.action = item.name;
+        }
+
         const textSpan = document.createElement("span");
         textSpan.className = PANEL_LIST_ITEM_TEXT_CLASS;
         textSpan.textContent = item.name;
 
-        const checkmark = document.createElement("button");
-        checkmark.className = PANEL_CHECKMARK_CLASS;
-        checkmark.classList.toggle('checked', item.state);
-        checkmark.setAttribute("aria-pressed", item.state);
+        // Apply List Item Type
+        if (item.UIStyle == 'Toggle') {
+            const checkmark = document.createElement("button");
+            checkmark.className = PANEL_CHECKMARK_CLASS;
+            checkmark.classList.toggle('checked', item.state);
+            checkmark.setAttribute("aria-pressed", item.state);
+            newItem.append(checkmark);
+        }
+        else if (item.UIStyle == 'Key') {
+            const keyWidget = document.createElement('span');
+            keyWidget.className = 'panel-list-item-key';
+            keyWidget.textContent = item.key.toUpperCase();
+            newItem.append(keyWidget);
+        }
 
-        newItem.append(textSpan, checkmark);
+        newItem.append(textSpan);
         panel.appendChild(newItem);
     });
 

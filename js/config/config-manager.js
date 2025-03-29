@@ -2,6 +2,8 @@
 // Configuration & Constants
 // ==============================
 
+
+
 //Config File Settings
 export let CONFIG_SETTINGS;
 export let MAP_TOOLTIPS;
@@ -20,14 +22,20 @@ export let MAP_SCALE = {
 // ==============================
 
 // Element IDs
-export const CANVAS_BACKGROUND_ID = "canvas-background";
-export const CANVAS_MAP_ID = "canvas-map";
-export const CANVAS_OVERLAYS_ID = "canvas-overlays";
+const CANVAS_BACKGROUND_ID = "canvas-background";
+const CANVAS_MAP_ID = "canvas-map";
+const CANVAS_WEATHER_ID = "canvas-weather";
+const CANVAS_TIME_ID = "canvas-time";
+const CANVAS_STATIC_OVERLAYS_ID = "canvas-static-overlays";
+const CANVAS_DYNAMIC_OVERLAYS_ID = "canvas-dynamic-overlays";
 
 // DOMs
 export const CANVAS_BACKGROUND = document.getElementById(CANVAS_BACKGROUND_ID);
 export const CANVAS_MAP = document.getElementById(CANVAS_MAP_ID);
-export const CANVAS_OVERLAYS = document.getElementById(CANVAS_OVERLAYS_ID);
+export const CANVAS_WEATHER = document.getElementById(CANVAS_WEATHER_ID);
+export const CANVAS_TIME = document.getElementById(CANVAS_TIME_ID);
+export const CANVAS_STATIC_OVERLAYS = document.getElementById(CANVAS_STATIC_OVERLAYS_ID);
+export const CANVAS_DYNAMIC_OVERLAYS = document.getElementById(CANVAS_DYNAMIC_OVERLAYS_ID);
 
 // Tool Asset Paths
 export const TOOL_ASSET_PATH = "assets/tool/";
@@ -55,17 +63,9 @@ export let KEY_BINDINGS = {
     PAN_LEFT: 'a',
     PAN_DOWN: 's',
     PAN_RIGHT: 'd',
-    TOOLS_NAVBAR_1: '1',
-    TOOLS_NAVBAR_2: '2',
-    TOOLS_NAVBAR_3: '3',
-    TOOLS_NAVBAR_4: '4',
-    TOOLS_NAVBAR_5: '5',
-    TOOLS_NAVBAR_6: '6',
-    TOOLS_NAVBAR_7: '7',
-    TOOLS_NAVBAR_8: '8',
 };
 
-const defaultKeyBindings = { ...KEY_BINDINGS };
+export const DEFAULT_KEY_BINDINGS = { ...KEY_BINDINGS };
 
 export let VOLUME = {
     MUSIC_VOLUME: 0.2,
@@ -114,11 +114,12 @@ export const RESET_VIEW_BUTTON_ID = "reset-view-button";
 export const WEATHER_BUTTON_ID = "weather-button";
 export const SET_TIME_BUTTON_ID = "set-time-button";
 export const SOUND_PANEL_ID = "soundPanel";
-export const SOUND_PANEL_BUTTON_ID = "sound-panel-button";
 export const OVERLAYS_BUTTON_ID = "overlays-button";
 export const OVERLAYS_PANEL_ID = "overlays-panel";
 export const USER_TOOLS_PANEL_ID = "user-tools-panel";
 export const DEV_TOOLS_PANEL_ID = "dev-tools-panel";
+export const KEYBINDINGS_PANEL_ID = "keybindings-panel";
+export const SETTINGS_PANEL_ID = "settings-panel"
 export const SETTINGS_BUTTON_ID = "settings-button";
 export const USER_TOOLS_BUTTON_ID = "user-tools-button";
 export const DEV_TOOLS_BUTTON_ID = "dev-tools-button";
@@ -242,34 +243,40 @@ const configHandlers = [
     }
 ];
 
-const loadUserPreferences = async function () {
+const loadUserSettings = async function () {
     try {
-        const response = await fetch('user-prefs.json');
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-        const userPrefs = await response.json();
-        if (!userPrefs.KeyBindings) throw new Error('No KeyBindings section');
-
-        // Validate and merge keybindings
-        const userKeyBindings = userPrefs.KeyBindings;
-        for (const [key, value] of Object.entries(userKeyBindings)) {
-            if (KEY_BINDINGS.hasOwnProperty(key) && typeof value === 'string') {
-                KEY_BINDINGS[key] = value.toLowerCase();
+        const keyBindingsCookie = document.cookie.split('; ').find(row => row.startsWith('keybindings='));
+        if (keyBindingsCookie) {
+            try {
+                const savedBindings = JSON.parse(decodeURIComponent(keyBindingsCookie.split('=')[1]));
+                KEY_BINDINGS = { ...DEFAULT_KEY_BINDINGS, ...savedBindings };
+            } catch {
+                console.log('Invalid KeyBindings Cookie. Reverting to default.');
+                KEY_BINDINGS = { ...DEFAULT_KEY_BINDINGS };
             }
+        } else {
+            console.log('No KeyBindings cookie found. Using default keybinding settings.');
         }
 
-        // Validate and merge volume
-        const userVolume = userPrefs.Volume;
-        if (!userPrefs.Volume) throw new Error('No Volume section');
-
-        for (const [key, value] of Object.entries(userVolume)) {
-            if (VOLUME.hasOwnProperty(key) && typeof value === 'number') {
-                VOLUME[key] = value;
+        const volumeCookie = document.cookie.split('; ').find(row => row.startsWith('volume='));
+        if (volumeCookie) {
+            console.log("FOUND THE VOLUME COOKIE");
+            try {
+                const savedVolume = JSON.parse(decodeURIComponent(volumeCookie.split('=')[1]));
+                for (const [key, value] of Object.entries(savedVolume)) {
+                    if (VOLUME.hasOwnProperty(key) && typeof value === 'number') {
+                        VOLUME[key] = value;
+                    }
+                }
+            } catch (error) {
+                console.log('Invalid Volume Cookie. Reverting to default volume settings.');
             }
+        } else {
+            console.log('No Volume cookie found. Using default volume settings.');
         }
     } catch (error) {
-        console.warn('Using default settings:', error.message);
-        KEY_BINDINGS = { ...defaultKeyBindings };
+        console.warn('Could not process user settings cookies. Using default.', error.message);
+        KEY_BINDINGS = { ...DEFAULT_KEY_BINDINGS };
         VOLUME = { ...defaultVolume };
     }
 }
@@ -292,12 +299,12 @@ const loadConfig = async function () {
             handler.action(value);
         });
 
-        // Load user preferences after main config
-        await loadUserPreferences();
+        // Load user settings after main config
+        await loadUserSettings();
 
     } catch (error) {
-        console.error('Config/Prefs loading error:', error.message);
-        KEY_BINDINGS = { ...defaultKeyBindings };
+        console.error('Config/Settings loading error:', error.message);
+        KEY_BINDINGS = { ...DEFAULT_KEY_BINDINGS };
         VOLUME = { ...defaultVolume };
     }
 }

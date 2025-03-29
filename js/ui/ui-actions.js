@@ -4,15 +4,13 @@ import {
 	RESET_VIEW_BUTTON_ID,
 	SET_TIME_BUTTON_ID,
 	SETTINGS_BUTTON_ID,
-	SOUND_PANEL_BUTTON_ID,
 	TOGGLE_GRID_BUTTON_ID,
 	USER_TOOLS_BUTTON_ID,
 	WEATHER_BUTTON_ID
 } from '../config/config-manager.js';
 
 import {
-	handleGridToggle,
-	handleSoundPanelToggle,
+	handleGridToggle
 } from './ui-manager.js';
 
 import { createAndPlayAudio } from '../audio/sound-system.js';
@@ -22,6 +20,7 @@ import { toggleOverlays } from '../rendering/overlays/overlay-manager.js';
 import { handleDayTimeToggle } from '../rendering/time-of-day-manager.js';
 import { toggleDevTools } from '../tools/devtools/dev-tools-manager.js';
 import { toggleUserToolsPanel } from '../tools/usertools/user-tools-manager.js';
+import { toggleSettings } from './usersettings/user-settings.js';
 
 const map = getMap();
 const EFFECT_PATH = "effects/";
@@ -46,13 +45,6 @@ export const buttonActions = [
 		action: () => {
 			createAndPlayAudio(EFFECT_PATH + "toggle_time.mp3", 0.3);
 			handleDayTimeToggle();
-		}
-	},
-	{
-		id: SOUND_PANEL_BUTTON_ID,
-		action: () => {
-			createAndPlayAudio(EFFECT_PATH + "toggle_sound_panel.mp3", 0.3);
-			handleSoundPanelToggle();
 		}
 	},
 	{

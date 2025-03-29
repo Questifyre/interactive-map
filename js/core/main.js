@@ -27,8 +27,7 @@ export const startApplication = function () {
 
     //Setup Removal of the Intro Popup - Used for welcome messages, update news, etc.
     const introPopup = document.getElementById('intro-popup');
-    if (introPopup)
-    {
+    if (introPopup) {
         const introPopupCloseButton = introPopup.querySelector('.popup-close-btn');
         const introPopupSupportButton = introPopup.querySelector('.popup-ok-btn');
 
@@ -91,15 +90,14 @@ const loadConfigFile = async function () {
         if (CONFIG_SETTINGS) {
             // Apply Web Page Name
             const pageTitle = CONFIG_SETTINGS["Page Title"];
-            if (pageTitle)
-            {
+            if (pageTitle) {
                 const titleSuffix = " | Questifyre"
                 document.title = pageTitle + titleSuffix ?? document.title + titleSuffix;
                 createBottomNavBarButtons(CONFIG_SETTINGS);
 
                 // Currently remove intro popup if not on the Github Sample!
                 const introPopup = document.getElementById('intro-popup');
-                if (introPopup && pageTitle == '') {
+                if (introPopup && pageTitle != 'Sample Map') {
                     introPopup.remove();
                 }
             }

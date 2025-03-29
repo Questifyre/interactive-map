@@ -1,5 +1,6 @@
 import { BUTTON_PATH, DAY, OVERLAY_FADE_DURATION, OVERLAY_PROPERTIES, SET_TIME_BUTTON_ID } from '../config/config-manager.js';
 import { hexToRgb, interpolateColor } from '../utilities/utils.js';
+import { drawStatuses } from './canvas-manager.js';
 
 // ==============================
 // Day & Night Cycle System
@@ -13,8 +14,9 @@ let targetTimeOverlayColor = { r: 0, g: 0, b: 0 };
 let initialTimeOverlayAlpha = 0;
 let initialTimeOverlayColor = { r: 0, g: 0, b: 0 };
 let fadeStartTime = null;
+let isListening = false;
 
-const drawDayNightOverlay = function (ctx) {
+const drawDayTimeOverlay = function (ctx) {
     if (currentTimeOverlayAlpha > 0) {
         ctx.fillStyle = `rgb(${currentTimeOverlayColor.r}, ${currentTimeOverlayColor.g}, ${currentTimeOverlayColor.b})`;
         ctx.globalAlpha = currentTimeOverlayAlpha;
@@ -23,17 +25,19 @@ const drawDayNightOverlay = function (ctx) {
     }
 }
 
-window.addEventListener('overlaysUpdated', (event) => {
-    const { ctxOverlays } = event.detail;
-    drawDayNightOverlay(ctxOverlays);
-});
+const handleOverlaysUpdated = (event) => {
+    drawDayTimeOverlay(event.detail.ctx);
+}
 
-export const updateDayNightCycle = function (timestamp) {
+export const updateDayTimeCycle = function (timestamp) {
     if (fadeStartTime !== null) {
         let progress = (timestamp - fadeStartTime) / OVERLAY_FADE_DURATION;
+        drawStatuses.time.mustRedraw = true;
+
         if (progress >= 1) {
             progress = 1;
             fadeStartTime = null;
+            drawStatuses.time.mustRedraw = false;
         }
         currentTimeOverlayAlpha = initialTimeOverlayAlpha + (targetTimeOverlayAlpha - initialTimeOverlayAlpha) * progress;
         currentTimeOverlayColor = interpolateColor(initialTimeOverlayColor, targetTimeOverlayColor, progress);
@@ -54,6 +58,7 @@ export const handleDayTimeToggle = function () {
 
     dayNightState = newState;
     fadeStartTime = performance.now();
+    drawStatuses.time.mustRedraw = true;
 
     const dayTimeButton = document.getElementById(SET_TIME_BUTTON_ID);
     if (dayTimeButton) {
@@ -61,5 +66,16 @@ export const handleDayTimeToggle = function () {
         if (img) {
             img.src = `${BUTTON_PATH}day_night_${dayNightState}.png`;
         }
+    }
+
+    if(newState != 0 && !isListening)
+    {
+        window.addEventListener('timeUpdated', handleOverlaysUpdated);
+        isListening = true;
+    }
+    else if(newState == 0 && isListening)
+    {
+        window.removeEventListener('timeUpdated', handleOverlaysUpdated);
+        isListening = false;
     }
 }

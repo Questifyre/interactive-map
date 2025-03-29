@@ -16,17 +16,20 @@ export let devToolStates = [
     {
         name: "Mouse Coordinate Tracking",
         state: false,
-        incompatibilities: []
+        incompatibilities: [],
+        UIStyle: 'Toggle'
     },
     {
         name: "Define Map Tooltip Area",
         state: false,
-        incompatibilities: ["Define Region Sound Area"]
+        incompatibilities: ["Define Region Sound Area"],
+        UIStyle: 'Toggle'
     },
     {
         name: "Define Region Sound Area",
         state: false,
-        incompatibilities: ["Define Map Tooltip Area"]
+        incompatibilities: ["Define Map Tooltip Area"],
+        UIStyle: 'Toggle'
     },
 ];
 

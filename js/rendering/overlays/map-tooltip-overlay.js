@@ -1,4 +1,4 @@
-import { CANVAS_MAP, MAP_TOOLTIPS } from '../../config/config-manager.js';
+import { CANVAS_DYNAMIC_OVERLAYS, MAP_TOOLTIPS } from '../../config/config-manager.js';
 import { currentWallpaperMatrix } from '../canvas-manager.js';
 
 let isEnabled = false;
@@ -20,23 +20,20 @@ const calculateCenters = function () {
 
 export const drawCircles = function (ctx) {
 	ctx.save();
-	// Match the overlay canvas transform state
 	ctx.setTransform(currentWallpaperMatrix);
-
 	cachedCenters.forEach(center => {
 		ctx.beginPath();
 		ctx.arc(center.x, center.y, circleRadius, 0, Math.PI * 2);
 		ctx.fillStyle = 'rgba(255, 0, 0, 0.7)';
 		ctx.fill();
 	});
-
 	ctx.restore();
 }
 
 export const toggleAreaCircles = async function () {
 	try {
 		isEnabled = !isEnabled;
-		const ctx = CANVAS_MAP.getContext('2d');
+		const ctx = CANVAS_DYNAMIC_OVERLAYS.getContext('2d');
 
 		if (isEnabled) {
 			// Calculate fresh coordinates
@@ -51,7 +48,7 @@ export const toggleAreaCircles = async function () {
 		} else {
 			// Stop animation and clear canvas
 			if (animationFrameId) cancelAnimationFrame(animationFrameId);
-			ctx.clearRect(0, 0, CANVAS_MAP.width, CANVAS_MAP.height);
+			ctx.clearRect(0, 0, CANVAS_DYNAMIC_OVERLAYS.width, CANVAS_DYNAMIC_OVERLAYS.height);
 		}
 	} catch (error) {
 		console.error('Error in toggleAreaCircles:', error);

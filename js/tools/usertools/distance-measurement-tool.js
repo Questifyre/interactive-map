@@ -1,6 +1,6 @@
 import { createAndPlayAudio } from '../../audio/sound-system.js';
-import { CANVAS_MAP, MAP_SCALE } from '../../config/config-manager.js';
-import { currentWallpaperMatrix, redrawCanvas } from '../../rendering/canvas-manager.js';
+import { CANVAS_MAP as CANVAS_DYNAMIC_OVERLAYS, MAP_SCALE } from '../../config/config-manager.js';
+import { currentWallpaperMatrix, drawStatuses, redrawCanvas } from '../../rendering/canvas-manager.js';
 import { createInteractiveMapTooltip } from '../../ui/ui-manager.js';
 import { getRelativeCoordinates } from '../../utilities/utils.js';
 
@@ -22,7 +22,7 @@ let animationFrameId = null;
 const getNaturalCoordinates = (eventOrPosition) => {
 	let mousePos;
 	if (eventOrPosition instanceof Event) {
-		mousePos = getRelativeCoordinates(eventOrPosition, CANVAS_MAP);
+		mousePos = getRelativeCoordinates(eventOrPosition, CANVAS_DYNAMIC_OVERLAYS);
 	} else {
 		mousePos = eventOrPosition;
 	}
@@ -103,11 +103,6 @@ const updateCachedPoints = () => {
 	redrawCanvas();
 };
 
-window.addEventListener('overlaysUpdated', (event) => {
-	const { ctxOverlays } = event.detail;
-	drawMeasurement(ctxOverlays);
-});
-
 const handleMouseDown = (event) => {
 	if (event.button === 0) {
 		// Left click
@@ -137,9 +132,10 @@ const calculateRealDistance = (pointA, pointB) => {
 
 const handleMouseMove = (event) => {
 	if (!tooltip) return;
+	drawStatuses.dynamicOverlays.mustRedraw = true;
 
 	// Store mouse position for drawing
-	const rect = CANVAS_MAP.getBoundingClientRect();
+	const rect = CANVAS_DYNAMIC_OVERLAYS.getBoundingClientRect();
 	lastMousePosition.x = event.clientX - rect.left;
 	lastMousePosition.y = event.clientY - rect.top;
 
@@ -188,7 +184,7 @@ const createTooltip = () => {
 	tooltipName.textContent = 'Distance:';
 
 	tooltipDesc = document.createElement('div');
-	tooltipDesc.style.whiteSpace = 'pre-line';
+	tooltipDesc.style.whiteSpace = 'pre-line'; 
 	tooltipDesc.style.fontWeight = 'normal';
 	tooltipDesc.style.color = 'rgb(204, 204, 204)';
 	tooltipDesc.style.fontSize = '0.9em';
@@ -199,19 +195,25 @@ const createTooltip = () => {
 	});
 };
 
+const handleOverlaysUpdated = (event) => {
+	drawMeasurement(event.detail.ctx);
+}
+
 export const enableDistanceMeasurement = (enable) => {
-	if (!MAP_SCALE) return;
+	if(!MAP_SCALE) return;
 	isEnabled = enable;
 
 	if (enable) {
 		createTooltip();
-		CANVAS_MAP.addEventListener('mousedown', handleMouseDown);
-		CANVAS_MAP.addEventListener('mousemove', handleMouseMove);
+		CANVAS_DYNAMIC_OVERLAYS.addEventListener('mousedown', handleMouseDown);
+		CANVAS_DYNAMIC_OVERLAYS.addEventListener('mousemove', handleMouseMove);
+		window.addEventListener('dynamicOverlaysUpdated', handleOverlaysUpdated);
 	} else {
 		points = [];
 		cachedPoints = [];
-		CANVAS_MAP.removeEventListener('mousedown', handleMouseDown);
-		CANVAS_MAP.removeEventListener('mousemove', handleMouseMove);
+		CANVAS_DYNAMIC_OVERLAYS.removeEventListener('mousedown', handleMouseDown);
+		CANVAS_DYNAMIC_OVERLAYS.removeEventListener('mousemove', handleMouseMove);
+		window.removeEventListener('dynamicOverlaysUpdated', handleOverlaysUpdated);
 		redrawCanvas();
 
 		if (tooltip) {

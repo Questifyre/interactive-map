@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file.
 
+## Alpha v0.8.0-EN1 - 29-03-2025
+
+### Canvas Rendering & Layering Overhaul
+- Split up the **Overlays Canvas** into two separate canvases:  
+  - One for **Static Overlays**  
+  - One for **Dynamic Overlays**
+- Added a new dedicated canvas for **Weather Effects**.
+- Added a new dedicated canvas for **Day Time Effects**.
+- Adjusted the **canvas rendering order**, from lowest to highest:
+  - **Background** → **Map** → **Weather** → **Time** → **Static Overlays** → **Dynamic Overlays**.
+
+### User Preferences & Settings Overhaul
+- **User settings** are no longer stored in `user-prefs.json`.  
+  - They are now **exclusively handled via browser cookies**.  
+  - All settings are **enabled by default** (but can be toggled).
+
+### UI/UX Changes
+- The **Sound Panel** is no longer a standalone button in the **Bottom NavBar**.  
+  - It has been moved to the **Settings Panel** as an option.
+
+### Performance Optimization
+- Greatly optimized performance across all fronts by implementing more event listeners, optimizing canvas rendering, and applying other efficiency improvements.
+
+### Code Refactoring & Naming Consistency
+- Refactored `drawDayNightOverlay()` to `drawDayTimeOverlay()` in `time-of-day-manager.js`.
+- Refactored `updateDayNightCycle()` to `updateDayTimeCycle()` in `time-of-day-manager.js`.
+
+### Bug Fixes
+- Finally fixed the GitHub favicon issue. It will now properly load as it should.
+
+
 ## Alpha v0.7.0-DN1 - 26-03-2025
 
 ### Configuration & Code Consistency

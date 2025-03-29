@@ -1,9 +1,9 @@
 import { MAX_ZOOM_SCALE, MIN_ZOOM_SCALE, WHEEL_ZOOM_SPEED } from "../../config/config-manager.js";
-import { CANVAS_TRANSFORM, drawMap } from "../../rendering/canvas-manager.js";
+import { CANVAS_TRANSFORM, drawMap, setDrawStatuses } from "../../rendering/canvas-manager.js";
 import {
-    CURSOR_GRAB,
-    CURSOR_GRABBING,
-    tryUpdateRegionSound,
+  CURSOR_GRAB,
+  CURSOR_GRABBING,
+  tryUpdateRegionSound,
 } from "./canvas-input-manager.js";
 
 // ==============================
@@ -17,6 +17,7 @@ export const setupMouseSystem = (canvas) => {
   let startX, startY, initialOffsetX, initialOffsetY;
 
   const updateCanvas = () => {
+    setDrawStatuses([0, 1, 2, 3], true);
     drawMap();
     tryUpdateRegionSound();
   };

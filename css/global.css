@@ -42,8 +42,32 @@ body {
     touch-action: none;
 }
 
-#canvas-overlays {
+#canvas-weather {
     z-index: 2;
+    display: block;
+    cursor: grab;
+    touch-action: none;
+    pointer-events: none
+}
+
+#canvas-time {
+    z-index: 3;
+    display: block;
+    cursor: grab;
+    touch-action: none;
+    pointer-events: none
+}
+
+#canvas-static-overlays {
+    z-index: 4;
+    display: block;
+    cursor: grab;
+    touch-action: none;
+    pointer-events: none
+}
+
+#canvas-dynamic-overlays {
+    z-index: 5;
     display: block;
     cursor: grab;
     touch-action: none;
