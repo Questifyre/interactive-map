@@ -1,6 +1,6 @@
 # Questifyre's Interactive Map  
 
-![Questifyre Banner (Background)](https://github.com/user-attachments/assets/dda74dd7-75ad-4aa4-b4b7-20833f564694)
+![Questifyre Banner](https://github.com/user-attachments/assets/9e29193d-2279-4a78-af05-2abcfabfb1e0)
 
 **🌍 Live Sample Preview:** [questifyre.github.io/interactive-map](https://questifyre.github.io/interactive-map/)
 
@@ -141,11 +141,17 @@ Set `"Developer Mode": true` to enable several **Developer Tools** that will ass
    - Open `index.html` in a browser. Use a local server (e.g., Local Host, VS Code’s Live Server) to avoid CORS issues.  
 2. **Host Online**:  
    - **GitHub Pages**: Fork this repo, enable GitHub Pages in your repo settings, and select the `main` branch.  
-   - Your map will be live at `https://[your-username].github.io/Questifyre-Interactive-Map/`.  
+   - Your map will be live at `https://[your-username].github.io/interactive-map/`.  
 
 ---
 
 ## Support & Future Plans  
-Love this project? Support its development on [Ko-fi](https://ko-fi.com/questifyre)! With enough support, I’ll build a **free platform** for creating, editing, and hosting interactive maps - no coding required!  
+Love this project? Support its development on [Ko-fi](https://ko-fi.com/questifyre)! With enough support, I’ll build a **free platform** for creating, editing, and hosting interactive maps - no coding required!
 
-Crafted with 🔥 by ***Bryan Gomes Saraiva*** | [Report Issues](https://github.com/your-repo/issues)
+🌟 Join the Community!  
+Be part of the journey, share your ideas, and connect with fellow creators:  
+🔹 [Discord](https://discord.com/invite/wZFk4cEvBg) – Chat, collaborate, and get exclusive updates!  
+🔹 [Youtube](https://www.youtube.com/channel/UCLGt30t07eHUpaiiXGdjPRQ) – Tutorials, showcases, and behind-the-scenes content!  
+🔹 [Reddit](https://www.reddit.com/user/Questifyre/) – Discuss features, share maps, and provide feedback!  
+
+Crafted with 🔥 by ***Bryan Gomes Saraiva*** | [Report Issues](https://github.com/Questifyre/interactive-map/issues)
