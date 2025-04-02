@@ -1,6 +1,6 @@
 # Questifyre's Interactive Map  
 
-![Questifyre Banner](https://github.com/user-attachments/assets/924c88f0-e292-4ade-a171-da951e6bf22a)
+![Questifyre Banner](https://github.com/user-attachments/assets/9e29193d-2279-4a78-af05-2abcfabfb1e0)
 
 **🌍 Live Sample Preview:** [questifyre.github.io/interactive-map](https://questifyre.github.io/interactive-map/)
 
@@ -67,35 +67,39 @@ Step into the heart of your tabletop realm with the **Questifyre Interactive Map
 Customize the map’s behavior by modifying the `config.json` file, or utilizing `Dev Tools` by enabling the `Developer Mode` option.  
 
 #### Basic Settings  
-```json  
+```jsonc
 "Settings": {  
-    "Page Title": "Map Name",
-    "Enable Grid Toggle": true,
-    "Enable Reset View": true,
-    "Enable Day Time Toggle": true,
-    "Enable Sound Panel": true,
-    "Enable Weather Toggle": true,
-    "Enable Overlays": true,
-    "Welcome Header": "Welcome to My Campaign!",  
-    "Developer Mode": true
-    "Zoom": {  
-        "Min": 0.8,  
-        "Max": 5  
+    "Page Title": "Map Name", // THIS IS THE NAME OF THE WEB PAGE.
+    "Enable Grid Toggle": true, // SET TO FALSE IF YOUR MAP DOESN'T HAVE GRID ON/OFF VARIANTS.
+    "Enable Reset View": true, // IF THE USER CAN RESET VIEW. TRUE IS RECOMMENDED.
+    "Enable Day Time Toggle": true, // IF THE USER CAN CHANGE THE DAY TIME FOR THEM.
+    "Enable Weather Toggle": true, // IF THE USER CAN CHANGE THE WEATHER FOR THEM.
+    "Enable Overlays": true, // ENABLE IF YOU HAVE MAP OVERLAY FILES.
+    "Enable User Tools": true, // IF THE USER CAN USE VARIOUS TOOLS LIKE DISTANCE MEASUREMENT.
+    "Enable Settings": true, // IF THE USER CAN CHANGE THEIR SETTINGS. TRUE IS RECOMMENDED.
+    "Developer Mode": true, // THIS IS FOR YOUR EXCLUSIVE USE, TO HELP SETTING UP THE MAP.
+    "Zoom": {
+        "Min": 0.8,
+        "Max": 5
     },
-    "Overlays": {
-        "Settlements": true,
-        "Landmarks": true,
-        "Land Routes": true,
-        "Sea Routes": true
+        "Overlays": { // CONTAINS THE OVERLAY OPTIONS. SET TO FALSE THE ONES YOU DON'T HAVE.
+        "Settlements": true, // IF YOU HAVE AN IMAGE OF SETTLEMENTS ONLY FOR OVERLAYING.
+        "Landmarks": true, // IF YOU HAVE AN IMAGE OF LANDMARKS ONLY FOR OVERLAYING.
+        "Land Routes": true, // IF YOU HAVE AN IMAGE OF LAND ROUTES ONLY FOR OVERLAYING.
+        "Sea Routes": true // IF YOU HAVE AN IMAGE OF SEA ROUTES ONLY FOR OVERLAYING.
     },
+        "Map Scale": { // THIS IS FOR THE DISTANCE MEASUREMENT TOOL.
+        "Distance Per Map Pixel": 0.342, // HOW MANY OF [DIST. UNIT] EACH PIXEL REPRESENTS.
+        "Distance Unit": "Miles" // THE UNIT MEASUREMENT TO BE DISPLAYED.
+    }
 }  
 ```  
 
 #### Map & Overlay Paths  
-```json  
+```jsonc
 "Maps": {  
-    "Grid": "map_grid.jpg",  
-    "Gridless": "map_gridless.jpg"  
+    "Grid": "map_grid.jpg", // DEFAULT MAP IMAGE. REGARDLESS OF WHETHER IT HAS A GRID OR NOT.
+    "Gridless": "map_gridless.jpg"
 },  
 "Overlays": {  
     "Settlements": "overlay_settlements.webp",
@@ -137,11 +141,17 @@ Set `"Developer Mode": true` to enable several **Developer Tools** that will ass
    - Open `index.html` in a browser. Use a local server (e.g., Local Host, VS Code’s Live Server) to avoid CORS issues.  
 2. **Host Online**:  
    - **GitHub Pages**: Fork this repo, enable GitHub Pages in your repo settings, and select the `main` branch.  
-   - Your map will be live at `https://[your-username].github.io/Questifyre-Interactive-Map/`.  
+   - Your map will be live at `https://[your-username].github.io/interactive-map/`.  
 
 ---
 
 ## Support & Future Plans  
-Love this project? Support its development on [Ko-fi](https://ko-fi.com/questifyre)! With enough support, I’ll build a **free platform** for creating, editing, and hosting interactive maps - no coding required!  
+Love this project? Support its development on [Ko-fi](https://ko-fi.com/questifyre)! With enough support, I’ll build a **free platform** for creating, editing, and hosting interactive maps - no coding required!
 
-Crafted with 🔥 by ***Bryan Gomes Saraiva*** | [Report Issues](https://github.com/your-repo/issues)
+🌟 Join the Community!  
+Be part of the journey, share your ideas, and connect with fellow creators:  
+🔹 [Discord](https://discord.com/invite/wZFk4cEvBg) – Chat, collaborate, and get exclusive updates!  
+🔹 [Youtube](https://www.youtube.com/channel/UCLGt30t07eHUpaiiXGdjPRQ) – Tutorials, showcases, and behind-the-scenes content!  
+🔹 [Reddit](https://www.reddit.com/user/Questifyre/) – Discuss features, share maps, and provide feedback!  
+
+Crafted with 🔥 by ***Bryan Gomes Saraiva*** | [Report Issues](https://github.com/Questifyre/interactive-map/issues)
