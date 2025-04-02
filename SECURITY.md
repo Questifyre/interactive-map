@@ -6,10 +6,8 @@ The following versions of Questifyre Interactive Map are currently being support
 
 | Version        | Supported          |
 | -------------- | ------------------ |
-| Alpha v0.5.0-BN1 | :white_check_mark: |
-| Alpha v0.4.0-AN1 | :x:                |
-| Alpha v0.3.x    | :x:                |
-| < Alpha v0.3.x  | :x:                |
+| Alpha v0.9.0-FM | :white_check_mark: |
+| < Alpha v0.8.x  | :x:                |
 
 ## Reporting a Vulnerability
 
