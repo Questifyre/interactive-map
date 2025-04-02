@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## Alpha v0.9.0-FM - 02-04-2025
+
+### Performance & Optimization
+- Slight **Canvas rendering optimization** by adding **CSS rules for hardware acceleration**.
+
+### New Features & Enhancements
+- **Map Tooltips** now support **touch devices**, improving usability on mobile.
+- **Distance Measurement Tool UI:**  
+  - Widened UI elements to improve visibility and ease of use.
+
+### Development & Codebase Improvements
+- The project now utilizes **ESLint** on the developer side to align with industry best practices.
+- Removed **unused export variables** across the project, reducing unnecessary clutter.
+- Formatted code across multiple scripts for **better readability and maintainability**.
+- Several scripts now utilize **events** instead of **direct function calls**.
+
 ## Alpha v0.8.0-EN1 - 29-03-2025
 
 ### Canvas Rendering & Layering Overhaul

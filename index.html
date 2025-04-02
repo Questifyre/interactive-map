@@ -2,82 +2,82 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Interactive Map | Questifyre</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="icon" type="image/png" href="assets/favicon.png?v=3">
-    <script>
-        document.addEventListener('readystatechange', () => {
-            if (document.readyState === 'interactive') {
-                document.documentElement.style.visibility = 'hidden';
-                document.addEventListener('DOMContentLoaded', () => {
-                    document.documentElement.style.visibility = '';
-                });
-            }
+  <meta charset="UTF-8">
+  <title>Interactive Map | Questifyre</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" type="image/png" href="assets/favicon.png?v=3">
+  <script>
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        document.documentElement.style.visibility = 'hidden';
+        document.addEventListener('DOMContentLoaded', () => {
+          document.documentElement.style.visibility = '';
         });
-    </script>
+      }
+    });
+  </script>
 </head>
 
 <body>
 
-    <div id="loading-screen-main">
-        <div id="loading-content-main">
-            <img src="assets/tool/images/icons/loading_logo.png" alt="Loading Logo" id="loading-logo">
-            <div id="loading-tip-text">‎ </div>
-            <div id="loading-version-text">Questifyre Alpha v0.8.0-EN1</div>
-            <div id="loading-circle-container-main">
-                <div class="loading-circle-main"></div>
-            </div>
-        </div>
+  <div id="loading-screen-main">
+    <div id="loading-content-main">
+      <img src="assets/tool/images/icons/loading_logo.png" alt="Loading Logo" id="loading-logo">
+      <div id="loading-tip-text">‎ </div>
+      <div id="loading-version-text">Questifyre Alpha v0.9.0-FM</div>
+      <div id="loading-circle-container-main">
+        <div class="loading-circle-main"></div>
+      </div>
     </div>
+  </div>
 
-    <div id="loading-screen-secondary">
-        <div id="loading-content-secondary">
-            <div id="loading-circle-container-secondary">
-                <div class="loading-circle-secondary"></div>
-            </div>
-        </div>
+  <div id="loading-screen-secondary">
+    <div id="loading-content-secondary">
+      <div id="loading-circle-container-secondary">
+        <div class="loading-circle-secondary"></div>
+      </div>
     </div>
+  </div>
 
-    <div id="overlay-header">
-        <h1 id="header-text"></h1>
+  <div id="overlay-header">
+    <h1 id="header-text"></h1>
+  </div>
+
+  <div class="popup" id="intro-popup" style="display: block;">
+    <div class="popup-content">
+      <div class="popup-header">Welcome</div>
+      <button class="popup-close-btn">×</button>
+      <div class="popup-description">
+        <span>
+          Bring Your World to Life with the Questifyre Interactive Map Tool!<br>
+          This powerful and versatile tool is designed for all kinds of interactive experiences, but it truly
+          shines in TTRPGs like Dungeons & Dragons!<br><br>
+          ✨ For Game Masters: Effortlessly set up and customize your map to create an immersive, living world
+          for your players.<br>
+          🛡️ For Players: Enjoy seamless navigation with Map Overlays, Dynamic Tooltips, Roleplaying Effects,
+          and more!<br>
+          ⚡ Whether you download it or host it online, getting started is a breeze!<br><br>
+          If you love this tool and want to support its development, consider visiting my Ko-Fi page! ☕
+        </span>
+      </div>
+      <div class="popup-buttons">
+        <button class="popup-ok-btn">💖 Support the Project</button>
+      </div>
     </div>
+  </div>
 
-    <div class="popup" id="intro-popup" style="display: block;">
-        <div class="popup-content">
-            <div class="popup-header">Welcome</div>
-            <button class="popup-close-btn">×</button>
-            <div class="popup-description">
-                <span>
-                    Bring Your World to Life with the Questifyre Interactive Map Tool!<br>
-                    This powerful and versatile tool is designed for all kinds of interactive experiences, but it truly
-                    shines in TTRPGs like Dungeons & Dragons!<br><br>
-                    ✨ For Game Masters: Effortlessly set up and customize your map to create an immersive, living world
-                    for your players.<br>
-                    🛡️ For Players: Enjoy seamless navigation with Map Overlays, Dynamic Tooltips, Roleplaying Effects,
-                    and more!<br>
-                    ⚡ Whether you download it or host it online, getting started is a breeze!<br><br>
-                    If you love this tool and want to support its development, consider visiting my Ko-Fi page! ☕
-                </span>
-            </div>
-            <div class="popup-buttons">
-                <button class="popup-ok-btn">💖 Support the Project</button>
-            </div>
-        </div>
-    </div>
+  <div class="bottom-nav-bar" id="bottom-nav-bar">
+    <div class="panel-header" id="bottom-nav-bar-header">Menu</div>
+  </div>
 
-    <div class="bottom-nav-bar" id="bottom-nav-bar">
-        <div class="panel-header" id="bottom-nav-bar-header">Menu</div>
-    </div>
+  <canvas id="canvas-background" class="canvas-layer"></canvas>
+  <canvas id="canvas-map" class="canvas-layer" tabindex="0"></canvas>
+  <canvas id="canvas-weather" class="canvas-layer"></canvas>
+  <canvas id="canvas-time" class="canvas-layer"></canvas>
+  <canvas id="canvas-static-overlays" class="canvas-layer"></canvas>
+  <canvas id="canvas-dynamic-overlays" class="canvas-layer"></canvas>
 
-    <canvas id="canvas-background" class="canvas-layer"></canvas>
-    <canvas id="canvas-map" class="canvas-layer" tabindex="0"></canvas>
-    <canvas id="canvas-weather" class="canvas-layer"></canvas>
-    <canvas id="canvas-time" class="canvas-layer"></canvas>
-    <canvas id="canvas-static-overlays" class="canvas-layer"></canvas>
-    <canvas id="canvas-dynamic-overlays" class="canvas-layer"></canvas>
-
-    <script type="module" src="js/core/main.js"></script>
+  <script type="module" src="js/core/main.js"></script>
 </body>
 
 </html>

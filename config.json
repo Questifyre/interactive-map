@@ -1,252 +1,251 @@
 {
-    "Settings": {
-        "Page Title": "Sample Map",
-        "Welcome Header": "WRITE A HEADER HERE!",
-        "Enable Grid Toggle": true,
-        "Enable Reset View": true,
-        "Enable Day Time Toggle": true,
-        "Enable Sound Panel": true,
-        "Enable Weather Toggle": true,
-        "Enable Overlays": true,
-        "Enable User Tools": true,
-        "Enable Settings": true,
-        "Developer Mode": true,
-        "Zoom": {
-            "Min": 0.8,
-            "Max": 5
-        },
-        "Overlays": {
-            "Settlements": true,
-            "Landmarks": true,
-            "Land Routes": true,
-            "Sea Routes": true
-        },
-        "Map Scale": {
-            "Distance Per Map Pixel": 0.342,
-            "Distance Unit": "Miles"
-        }
-    },
-    "Maps": {
-        "Grid": "map_grid.webp",
-        "Gridless": "map_gridless.webp"
+  "Settings": {
+    "Page Title": "Sample Map",
+    "Welcome Header": "WRITE A HEADER HERE!",
+    "Enable Grid Toggle": true,
+    "Enable Reset View": true,
+    "Enable Day Time Toggle": true,
+    "Enable Weather Toggle": true,
+    "Enable Overlays": true,
+    "Enable User Tools": true,
+    "Enable Settings": true,
+    "Developer Mode": true,
+    "Zoom": {
+      "Min": 0.8,
+      "Max": 5
     },
     "Overlays": {
-        "Settlements": "overlay_settlements.webp",
-        "Landmarks": "overlay_landmarks.webp",
-        "Land Routes": "overlay_land_routes.webp",
-        "Sea Routes": "overlay_sea_routes.webp"
+      "Settlements": true,
+      "Landmarks": true,
+      "Land Routes": true,
+      "Sea Routes": true
     },
-    "Map Tooltips": [
-        {
-            "name": "Oaklen (Village)",
-            "description": "Oaklen is conveniently placed on the other side of the Blue Bridge, and as such acts as a local hub for the Narminian population.",
-            "area": {
-                "x": {
-                    "min": 1480,
-                    "max": 1669
-                },
-                "y": {
-                    "min": 1259,
-                    "max": 1471
-                }
-            }
+    "Map Scale": {
+      "Distance Per Map Pixel": 0.342,
+      "Distance Unit": "Miles"
+    }
+  },
+  "Maps": {
+    "Grid": "map_grid.webp",
+    "Gridless": "map_gridless.webp"
+  },
+  "Overlays": {
+    "Settlements": "overlay_settlements.webp",
+    "Landmarks": "overlay_landmarks.webp",
+    "Land Routes": "overlay_land_routes.webp",
+    "Sea Routes": "overlay_sea_routes.webp"
+  },
+  "Map Tooltips": [
+    {
+      "name": "Oaklen (Village)",
+      "description": "Oaklen is conveniently placed on the other side of the Blue Bridge, and as such acts as a local hub for the Narminian population.",
+      "area": {
+        "x": {
+          "min": 1480,
+          "max": 1669
         },
-        {
-            "name": "Pewterden (Town)",
-            "description": "Humble Pewterden is the second largest settlement in Narmin, and a safe port for the occasional stragglers and ships passing through Riven.",
-            "area": {
-                "x": {
-                    "min": 517,
-                    "max": 744
-                },
-                "y": {
-                    "min": 1512,
-                    "max": 1737
-                }
-            }
-        },
-        {
-            "name": "Riven (Capital City)",
-            "description": "Capital city and Jewel of Narmin, ships of all corners of the world dock in its bustling harbour. The city is a thriving hub of trade and culture.",
-            "area": {
-                "x": {
-                    "min": 549,
-                    "max": 749
-                },
-                "y": {
-                    "min": 837,
-                    "max": 1091
-                }
-            }
-        },
-        {
-            "name": "Dartwood Estate",
-            "description": "Owned by the Dartwood Dynasty, known for their hospitality. It has become a popular resting spot for those that are venturing towards the Verdant Spire.",
-            "area": {
-                "x": {
-                    "min": 1336,
-                    "max": 1442
-                },
-                "y": {
-                    "min": 840,
-                    "max": 1028
-                }
-            }
-        },
-        {
-            "name": "Silvervein Hollow",
-            "description": "One of the oldest silver mines in all of Haven, Silvervein Hollow has been a large producer of income for the Kingdom for thousands of years.",
-            "area": {
-                "x": {
-                    "min": 700,
-                    "max": 879
-                },
-                "y": {
-                    "min": 1308,
-                    "max": 1493
-                }
-            }
-        },
-        {
-            "name": "Spiresong Ruins",
-            "description": "Some say these ruins used to be a sprawling town, before a calamity befell on it. Others say it was home to the Verdant Spire before it shifted places. Nowadays it is known for its namesake song.",
-            "area": {
-                "x": {
-                    "min": 1541,
-                    "max": 1729
-                },
-                "y": {
-                    "min": 1648,
-                    "max": 1804
-                }
-            }
-        },
-        {
-            "name": "Verdant Spire",
-            "description": "This Spire is known for the massive tree roots that surround and protect it, and is home to the Aspect of Nature.",
-            "area": {
-                "x": {
-                    "min": 1755,
-                    "max": 1857
-                },
-                "y": {
-                    "min": 550,
-                    "max": 755
-                }
-            }
-        },
-        {
-            "name": "Beaverduff Woods",
-            "description": "This peaceful forest is home to a vast number of beavers, who have live peacefully by the shores of Raygan Channel.",
-            "area": {
-                "x": {
-                    "min": 1456,
-                    "max": 1985
-                },
-                "y": {
-                    "min": 1082,
-                    "max": 1257
-                }
-            }
-        },
-        {
-            "name": "Eaglenest Canopy",
-            "description": "This canopy is known for being the natural habitat of the proud Narminian Eagle.",
-            "area": {
-                "x": {
-                    "min": 406,
-                    "max": 910
-                },
-                "y": {
-                    "min": 685,
-                    "max": 783
-                }
-            }
-        },
-        {
-            "name": "Raygan Channel",
-            "description": "It is said that Raygan Channel is an unnatural occurrence, created by powerful wizards. Likely the same ones that made the forest that surrounds it in the North.",
-            "area": {
-                "x": {
-                    "min": 1523,
-                    "max": 2261
-                },
-                "y": {
-                    "min": 913,
-                    "max": 1076
-                }
-            }
-        },
-        {
-            "name": "Saphire Falls",
-            "description": "Beauty is in the eyes of the beholder. But sometimes, it is actually at the end of a waterfall, in the form of a beautiful, expensive blue gem.",
-            "area": {
-                "x": {
-                    "min": 308,
-                    "max": 524
-                },
-                "y": {
-                    "min": 972,
-                    "max": 1165
-                }
-            }
-        },
-        {
-            "name": "Spiral Forest",
-            "description": "This forest, also known as 'The Green Maze', is a massive natural formation of trees that would turn even the sanest person mad if they dared trying to reach its centre.",
-            "area": {
-                "x": {
-                    "min": 1264,
-                    "max": 1667
-                },
-                "y": {
-                    "min": 523,
-                    "max": 652
-                }
-            }
-        },
-        {
-            "name": "Silverleaf Forest",
-            "description": "It is said that this forest was once inhabited by dancing, silvery Fey. Now all that's left are the silver leaves occasionally found throughout it.",
-            "area": {
-                "x": {
-                    "min": 256,
-                    "max": 565
-                },
-                "y": {
-                    "min": 1318,
-                    "max": 1489
-                }
-            }
-        },
-        {
-            "name": "Tarn River",
-            "description": "This great river flows directly from the ocean towards the Capital city of Riven, allowing free flow of commerce and fishing. It also serves as a natural protective barrier.",
-            "area": {
-                "x": {
-                    "min": 547,
-                    "max": 1026
-                },
-                "y": {
-                    "min": 1102,
-                    "max": 1201
-                }
-            }
+        "y": {
+          "min": 1259,
+          "max": 1471
         }
-    ],
-    "Region Music": [
-        {
-            "sound path": "narmin_theme.mp3",
-            "area": {
-                "x": {
-                    "min": 0,
-                    "max": 9999
-                },
-                "y": {
-                    "min": 0,
-                    "max": 9999
-                }
-            }
+      }
+    },
+    {
+      "name": "Pewterden (Town)",
+      "description": "Humble Pewterden is the second largest settlement in Narmin, and a safe port for the occasional stragglers and ships passing through Riven.",
+      "area": {
+        "x": {
+          "min": 517,
+          "max": 744
+        },
+        "y": {
+          "min": 1512,
+          "max": 1737
         }
-    ]
+      }
+    },
+    {
+      "name": "Riven (Capital City)",
+      "description": "Capital city and Jewel of Narmin, ships of all corners of the world dock in its bustling harbour. The city is a thriving hub of trade and culture.",
+      "area": {
+        "x": {
+          "min": 549,
+          "max": 749
+        },
+        "y": {
+          "min": 837,
+          "max": 1091
+        }
+      }
+    },
+    {
+      "name": "Dartwood Estate",
+      "description": "Owned by the Dartwood Dynasty, known for their hospitality. It has become a popular resting spot for those that are venturing towards the Verdant Spire.",
+      "area": {
+        "x": {
+          "min": 1336,
+          "max": 1442
+        },
+        "y": {
+          "min": 840,
+          "max": 1028
+        }
+      }
+    },
+    {
+      "name": "Silvervein Hollow",
+      "description": "One of the oldest silver mines in all of Haven, Silvervein Hollow has been a large producer of income for the Kingdom for thousands of years.",
+      "area": {
+        "x": {
+          "min": 700,
+          "max": 879
+        },
+        "y": {
+          "min": 1308,
+          "max": 1493
+        }
+      }
+    },
+    {
+      "name": "Spiresong Ruins",
+      "description": "Some say these ruins used to be a sprawling town, before a calamity befell on it. Others say it was home to the Verdant Spire before it shifted places. Nowadays it is known for its namesake song.",
+      "area": {
+        "x": {
+          "min": 1541,
+          "max": 1729
+        },
+        "y": {
+          "min": 1648,
+          "max": 1804
+        }
+      }
+    },
+    {
+      "name": "Verdant Spire",
+      "description": "This Spire is known for the massive tree roots that surround and protect it, and is home to the Aspect of Nature.",
+      "area": {
+        "x": {
+          "min": 1755,
+          "max": 1857
+        },
+        "y": {
+          "min": 550,
+          "max": 755
+        }
+      }
+    },
+    {
+      "name": "Beaverduff Woods",
+      "description": "This peaceful forest is home to a vast number of beavers, who have live peacefully by the shores of Raygan Channel.",
+      "area": {
+        "x": {
+          "min": 1456,
+          "max": 1985
+        },
+        "y": {
+          "min": 1082,
+          "max": 1257
+        }
+      }
+    },
+    {
+      "name": "Eaglenest Canopy",
+      "description": "This canopy is known for being the natural habitat of the proud Narminian Eagle.",
+      "area": {
+        "x": {
+          "min": 406,
+          "max": 910
+        },
+        "y": {
+          "min": 685,
+          "max": 783
+        }
+      }
+    },
+    {
+      "name": "Raygan Channel",
+      "description": "It is said that Raygan Channel is an unnatural occurrence, created by powerful wizards. Likely the same ones that made the forest that surrounds it in the North.",
+      "area": {
+        "x": {
+          "min": 1523,
+          "max": 2261
+        },
+        "y": {
+          "min": 913,
+          "max": 1076
+        }
+      }
+    },
+    {
+      "name": "Saphire Falls",
+      "description": "Beauty is in the eyes of the beholder. But sometimes, it is actually at the end of a waterfall, in the form of a beautiful, expensive blue gem.",
+      "area": {
+        "x": {
+          "min": 308,
+          "max": 524
+        },
+        "y": {
+          "min": 972,
+          "max": 1165
+        }
+      }
+    },
+    {
+      "name": "Spiral Forest",
+      "description": "This forest, also known as 'The Green Maze', is a massive natural formation of trees that would turn even the sanest person mad if they dared trying to reach its centre.",
+      "area": {
+        "x": {
+          "min": 1264,
+          "max": 1667
+        },
+        "y": {
+          "min": 523,
+          "max": 652
+        }
+      }
+    },
+    {
+      "name": "Silverleaf Forest",
+      "description": "It is said that this forest was once inhabited by dancing, silvery Fey. Now all that's left are the silver leaves occasionally found throughout it.",
+      "area": {
+        "x": {
+          "min": 256,
+          "max": 565
+        },
+        "y": {
+          "min": 1318,
+          "max": 1489
+        }
+      }
+    },
+    {
+      "name": "Tarn River",
+      "description": "This great river flows directly from the ocean towards the Capital city of Riven, allowing free flow of commerce and fishing. It also serves as a natural protective barrier.",
+      "area": {
+        "x": {
+          "min": 547,
+          "max": 1026
+        },
+        "y": {
+          "min": 1102,
+          "max": 1201
+        }
+      }
+    }
+  ],
+  "Region Music": [
+    {
+      "sound path": "narmin_theme.mp3",
+      "area": {
+        "x": {
+          "min": 0,
+          "max": 9999
+        },
+        "y": {
+          "min": 0,
+          "max": 9999
+        }
+      }
+    }
+  ]
 }

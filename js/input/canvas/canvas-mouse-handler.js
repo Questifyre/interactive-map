@@ -46,7 +46,7 @@ export const setupMouseSystem = (canvas) => {
     const scaledZoom = Math.pow(zoomFactor, 1);
     const constrainedScale = Math.min(
       Math.max(CANVAS_TRANSFORM.scale * scaledZoom, MIN_ZOOM_SCALE),
-      MAX_ZOOM_SCALE
+      MAX_ZOOM_SCALE,
     );
     const scaleRatio = constrainedScale / CANVAS_TRANSFORM.scale;
     CANVAS_TRANSFORM.offsetX =
@@ -66,14 +66,14 @@ export const setupMouseSystem = (canvas) => {
       const rect = canvas.getBoundingClientRect();
       handleZoom(zoomFactor, e.clientX - rect.left, e.clientY - rect.top);
     },
-    { passive: false }
+    { passive: false },
   );
 
   canvas.addEventListener("mousedown", (e) =>
-    handleDragStart(e.clientX, e.clientY)
+    handleDragStart(e.clientX, e.clientY),
   );
   canvas.addEventListener("mousemove", (e) =>
-    handleDragMove(e.clientX, e.clientY)
+    handleDragMove(e.clientX, e.clientY),
   );
 
   const endInteraction = () => {

@@ -44,6 +44,44 @@
     will-change: transform, opacity;
 }
 
+.interactive-map-tooltip {
+    z-index: 200;
+    width: fit-content;
+    min-width: 100px;
+    max-width: 20%;
+    height: auto;
+    padding: 5px 10px;
+    background-color: rgba(26, 26, 26, 0.8);
+    border-radius: 5px;
+    color: white;
+    font-family: 'Modesto', sans-serif;
+    font-size: 1.1em;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    position: fixed;
+    pointer-events: none;
+    transform: translate3d(0, 0, 0);
+    will-change: transform, opacity;
+}
+
+@media (orientation: portrait) {
+    .interactive-map-tooltip {
+        --portrait-scale: 1.5;
+        --mobile-font-base: 20px;
+        font-size: calc(1.1em * var(--portrait-scale));
+        line-height: 1.4;
+        padding: calc(5px * var(--portrait-scale)) calc(10px * var(--portrait-scale));
+        border-radius: calc(5px * var(--portrait-scale));
+        min-width: calc(100px * var(--portrait-scale));
+        max-width: min(26%, 300px);
+        backdrop-filter: blur(calc(2px * var(--portrait-scale)));
+        -webkit-backdrop-filter: blur(calc(2px * var(--portrait-scale)));
+    }
+}
+
 .interactive-map-tooltip.visible {
     opacity: 1;
     visibility: visible;

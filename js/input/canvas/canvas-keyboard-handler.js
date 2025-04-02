@@ -23,7 +23,7 @@ const handleKeyPan = function () {
 
   setDrawStatuses([0, 1, 2, 3], true);
   drawMap();
-}
+};
 
 const isEditingText = function () {
   const activeElement = document.activeElement;
@@ -32,7 +32,7 @@ const isEditingText = function () {
     activeElement.tagName === "TEXTAREA" ||
     activeElement.isContentEditable
   );
-}
+};
 
 export const setupKeyboardSystem = () => {
   document.addEventListener("keydown", (e) => {
@@ -63,6 +63,6 @@ export const setupKeyboardSystem = () => {
   });
 };
 
-window.addEventListener('keybindingsUpdated', (event) => {
+window.addEventListener("keybindingsUpdated", (event) => {
   keyBindings = event.detail.newBindings;
 });

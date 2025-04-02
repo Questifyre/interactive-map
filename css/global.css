@@ -28,6 +28,9 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    display: block;
+    cursor: grab;
+    touch-action: none;
 }
 
 #canvas-background {
@@ -37,39 +40,29 @@ body {
 
 #canvas-map {
     z-index: 1;
-    display: block;
-    cursor: grab;
-    touch-action: none;
+    will-change: transform;
 }
 
 #canvas-weather {
     z-index: 2;
-    display: block;
-    cursor: grab;
-    touch-action: none;
-    pointer-events: none
+    pointer-events: none;
+    will-change: transform;
 }
 
 #canvas-time {
     z-index: 3;
-    display: block;
-    cursor: grab;
-    touch-action: none;
-    pointer-events: none
+    pointer-events: none;
+    will-change: transform;
 }
 
 #canvas-static-overlays {
     z-index: 4;
-    display: block;
-    cursor: grab;
-    touch-action: none;
-    pointer-events: none
+    pointer-events: none;
+    will-change: transform;
 }
 
 #canvas-dynamic-overlays {
     z-index: 5;
-    display: block;
-    cursor: grab;
-    touch-action: none;
-    pointer-events: none
+    pointer-events: none;
+    will-change: transform;
 }

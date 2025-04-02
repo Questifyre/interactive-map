@@ -1,5 +1,5 @@
 import { updateRegionSound } from "../../audio/sound-system.js";
-import { CANVAS_MAP } from "../../config/config-manager.js";
+import { CANVAS_MAP, MOBILE_DEVICE } from "../../config/config-manager.js";
 
 export const CURSOR_GRAB = "grab";
 export const CURSOR_GRABBING = "grabbing";
@@ -12,10 +12,10 @@ export const tryUpdateRegionSound = function () {
     updateRegionSound();
     lastRegionSoundUpdate = now;
   }
-}
+};
 
 // Decide which Input System to load for controlling the Map
-export const setMapInteractionSystem = function (isMobileDevice) {
+const setMapInteractionSystem = function (isMobileDevice) {
   if (!isMobileDevice) {
     import("./canvas-mouse-handler.js").then((module) => {
       module.setupMouseSystem(CANVAS_MAP);
@@ -28,4 +28,8 @@ export const setMapInteractionSystem = function (isMobileDevice) {
       module.setupTouchSystem(CANVAS_MAP);
     });
   }
-}
+};
+
+window.addEventListener("application-started", () => {
+  setMapInteractionSystem(MOBILE_DEVICE);
+});

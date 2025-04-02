@@ -59,7 +59,7 @@ const cancelDrawing = function () {
     currentBox.remove();
     currentBox = null;
   }
-}
+};
 
 const saveAreasToFile = async function () {
   disableMouseInputTrick[0] = false;
@@ -99,7 +99,7 @@ const saveAreasToFile = async function () {
   } finally {
     areas = [];
   }
-}
+};
 
 const handleMouseDown = function (event) {
   if (event.button === 0) {
@@ -141,7 +141,7 @@ const handleMouseDown = function (event) {
       saveAreasToFile();
     }
   }
-}
+};
 
 const handleMouseMove = function (event) {
   if (!drawing) return;
@@ -159,7 +159,7 @@ const handleMouseMove = function (event) {
   currentBox.style.top = `${top}px`;
   currentBox.style.width = `${width}px`;
   currentBox.style.height = `${height}px`;
-}
+};
 
 const handleMouseUp = async function (event) {
   if (!drawing || event.button !== 0) return;
@@ -214,7 +214,7 @@ const handleMouseUp = async function (event) {
     currentBox.remove();
     currentBox = null;
   }
-}
+};
 
 // Unified event listener management
 const eventHandlers = {
@@ -267,7 +267,7 @@ const createPrompt = function ({ id, fields, buttons }) {
   contentDiv.appendChild(buttonDiv);
   promptDiv.appendChild(contentDiv);
   document.body.appendChild(promptDiv);
-}
+};
 
 const removePrompt = (id) => {
   const prompt = document.getElementById(id);
@@ -279,7 +279,7 @@ const createPromptHandler = function (config) {
     return new Promise((resolve) => {
       const prompt = document.getElementById(config.promptId);
       const inputs = config.inputSelectors.map((sel) =>
-        document.querySelector(sel)
+        document.querySelector(sel),
       );
 
       const cleanUp = () => {
@@ -326,7 +326,7 @@ const createPromptHandler = function (config) {
       });
     });
   };
-}
+};
 
 // Configured prompts
 const showMapTooltipPrompt = createPromptHandler({
@@ -390,4 +390,4 @@ export const notifyMapAreaTool = function (toolName, toolState) {
     eventHandlers.remove();
     cancelDrawing();
   }
-}
+};

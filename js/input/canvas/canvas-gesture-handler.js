@@ -43,7 +43,7 @@ export const setupTouchSystem = (canvas) => {
     const scaledZoom = Math.pow(zoomFactor, sensitivity);
     const constrainedScale = Math.min(
       Math.max(CANVAS_TRANSFORM.scale * scaledZoom, MIN_ZOOM_SCALE),
-      MAX_ZOOM_SCALE
+      MAX_ZOOM_SCALE,
     );
     const scaleRatio = constrainedScale / CANVAS_TRANSFORM.scale;
     CANVAS_TRANSFORM.offsetX =
@@ -66,7 +66,7 @@ export const setupTouchSystem = (canvas) => {
         initialDistance = getDistanceBetweenTouches(e);
       }
     },
-    { passive: false }
+    { passive: false },
   );
 
   canvas.addEventListener(
@@ -92,7 +92,7 @@ export const setupTouchSystem = (canvas) => {
         }
       }
     },
-    { passive: false }
+    { passive: false },
   );
 
   const endInteraction = () => {
@@ -105,7 +105,7 @@ export const setupTouchSystem = (canvas) => {
   const getDistanceBetweenTouches = (e) =>
     Math.hypot(
       e.touches[0].clientX - e.touches[1].clientX,
-      e.touches[0].clientY - e.touches[1].clientY
+      e.touches[0].clientY - e.touches[1].clientY,
     );
 
   canvas.addEventListener("touchend", (e) => {
